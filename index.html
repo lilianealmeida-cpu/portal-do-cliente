@@ -31,11 +31,13 @@ html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
 .hidden{display:none!important}
 
-/* ── LOADING ── */
+/* ── LOADING CORRIGIDO (SOME SOZINHO SE O JS TRAVAR) ── */
 #vLoading{
   position:fixed;inset:0;background:var(--ink);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  z-index:999;transition:opacity .5s;
+  z-index:999;
+  animation: fadeOutContainer 0.5s ease-in-out 2s forwards;
+  pointer-events: none;
 }
 #vLoading .logo-load{
   font-family:'Cormorant Garamond',serif;
@@ -46,6 +48,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
   font-size:10px;letter-spacing:4px;color:rgba(255,255,255,.4);margin-top:8px;text-transform:uppercase;
 }
 @keyframes breathe{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes fadeOutContainer{
+  0%{opacity:1;visibility:visible}
+  99%{opacity:0;visibility:visible}
+  100%{opacity:0;visibility:hidden;display:none!important}
+}
 
 /* ── TOAST ── */
 .toast{
@@ -95,52 +102,4 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
 .hdr-logo span{color:var(--brick)}
 .hdr-sub{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--mist);margin-top:1px}
 .hdr-right{display:flex;align-items:center;gap:12px}
-.hdr-mode-badge{font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:100px;font-weight:500}
-.hdr-mode-badge.admin{background:var(--brick-pale);color:var(--brick)}
-.hdr-mode-badge.client{background:var(--blue-pale);color:var(--blue)}
-.btn-exit{
-  background:none;border:1px solid var(--line2);color:var(--mist);
-  font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:1px;
-  padding:7px 16px;border-radius:100px;cursor:pointer;transition:all .2s;
-}
-.btn-exit:hover{border-color:var(--brick);color:var(--brick)}
-
-/* ── SYSTEM WRAPPER ── */
-.sys-wrap{display:flex;min-height:calc(100vh - 60px)}
-
-/* ── SIDEBAR ── */
-.sidebar{
-  width:280px;background:var(--white);border-right:1px solid var(--line);
-  padding:24px 16px;flex-shrink:0;overflow-y:auto;
-}
-.sidebar-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--mist);margin-bottom:12px;padding:0 8px}
-.cli-item{
-  display:flex;align-items:center;gap:12px;
-  padding:11px 12px;border-radius:10px;cursor:pointer;
-  transition:background .15s;margin-bottom:2px;
-}
-.cli-item:hover{background:var(--stone)}
-.cli-item.on{background:var(--brick-pale)}
-.cli-av{
-  width:36px;height:36px;border-radius:50%;background:var(--brick);color:var(--white);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;flex-shrink:0;
-}
-.cli-info{overflow:hidden}
-.cli-nome{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cli-obra{font-size:11px;color:var(--mist);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.btn-add-cli{
-  width:100%;margin-top:12px;padding:10px;border:1.5px dashed var(--line2);background:none;
-  border-radius:10px;color:var(--mist);font-family:'DM Sans',sans-serif;font-size:12px;
-  cursor:pointer;transition:all .2s;
-}
-.btn-add-cli:hover{border-color:var(--brick);color:var(--brick)}
-
-/* ── MAIN CONTENT AREA ── */
-.main{flex:1;padding:32px;overflow-y:auto;max-width:1000px;margin:0 auto;width:100%}
-
-/* ── CLIENT HERO CARD ── */
-.hero-card{background:var(--white);border-radius:16px;padding:28px;margin-bottom:24px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.cli-header{display:flex;gap:16px;align-items:flex-start;margin-bottom:20px}
-.cli-av-lg{
-  width:56px;height:56px;border-radius:50%;background:var
+.hdr-mode-badge{
