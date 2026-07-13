@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"/>
@@ -198,7 +198,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
 .etapa-num{font-size:10px;color:var(--mist);margin-top:6px;letter-spacing:1px;font-weight:500}
 
 .etapa-center{flex:1}
-.etapa-header-meta{display:flex;align-items:center;justify-content:between;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+.etapa-header-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;flex-wrap:wrap}
 .etapa-nome{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--ink)}
 .etapa-pill{
   font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:100px;
@@ -432,7 +432,7 @@ let db = {
           historico: "15/02/2026 - Envio da primeira versão tridimensional.\n20/02/2026 - Ajuste de pontos de iluminação solicitados.",
           registroTecnico: "Ajustado o rebaixo do gesso para suportar a coifa embutida. Carga elétrica revisada.",
           fluxoMobiliario: true,
-          fluxoEtapa: "alinhamento", // 'detalhamento', 'alinhamento', 'producao', 'pausa'
+          fluxoEtapa: "alinhamento", 
           validacao: { status: "pendente", feedback: "", data: "" },
           anexos: [
             { nome: "Planta_Layout_Aprovada.pdf", tipo: "pdf", url: "#" },
@@ -697,47 +697,10 @@ function renderTabContent(cli){
 
             ${db.currentUserMode === 'admin' ? `
               <div class="admin-actions-container">
-                <div class="admin-actions-title">⚙️ Gerenciar Informações da Etapa (Apenas Admins)</div>
-                
-                <div class="field">
-                  <label>Mudar Status Base da Etapa</label>
-                  <select onchange="updateEtapaStatus('${cli.id}', ${index}, this.value)">
-                    <option value="pendente" ${et.status==='pendente'?'selected':''}>Pendente / Bloqueada</option>
-                    <option value="ativa" ${et.status==='ativa'?'selected':''}>Ativa / Em Andamento</option>
-                    <option value="concluida" ${et.status==='concluida'?'selected':''}>Concluída</option>
-                  </select>
-                </div>
-
+                <div class="admin-actions-title">Painel de Controle Interno (Apenas Arquiteta)</div>
                 <div class="admin-input-group">
-                  <textarea placeholder="Inserir ou editar Observações da Arquiteta..." onblur="updateEtapaTexto('${cli.id}', ${index}, 'observacoes', this.value)">${et.observacoes}</textarea>
-                  <textarea placeholder="Adicionar linha ao Histórico/Evolução..." onblur="updateEtapaTexto('${cli.id}', ${index}, 'historico', this.value)">${et.historico}</textarea>
-                  <textarea placeholder="Adicionar Comentários/Registros Técnicos..." onblur="updateEtapaTexto('${cli.id}', ${index}, 'registroTecnico', this.value)">${et.registroTecnico}</textarea>
-                </div>
-
-                <div class="admin-actions-title" style="margin-top:12px;">📎 Adicionar Novo Anexo Automático</div>
-                <div class="admin-input-group">
-                  <input type="text" id="newAnexoNome_${index}" placeholder="Nome do arquivo (Ex: Planta Baixa)">
-                  <select id="newAnexoTipo_${index}">
-                    <option value="pdf">PDF</option>
-                    <option value="imagem">Imagem</option>
-                    <option value="link">Link Google Drive</option>
-                  </select>
-                  <button class="btn-sm primary" onclick="adicionarAnexoAdmin('${cli.id}', ${index})">+ Anexar</button>
-                </div>
-                
-                <div class="admin-actions-title" style="margin-top:12px;">🛋️ Fluxo de Mobiliário</div>
-                <div class="admin-input-group">
-                  <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:var(--ink2);">
-                    <input type="checkbox" ${et.fluxoMobiliario ? 'checked' : ''} onchange="toggleFluxoMobiliario('${cli.id}', ${index}, this.checked)"> Ativar Fluxo de Marcenaria/Mobiliário nesta etapa
-                  </label>
-                  ${et.fluxoMobiliario ? `
-                    <select onchange="changeFluxoEtapa('${cli.id}', ${index}, this.value)">
-                      <option value="detalhamento" ${et.fluxoEtapa==='detalhamento'?'selected':''}>1. Detalhamento Técnico (1:1 DWG)</option>
-                      <option value="alinhamento" ${et.fluxoEtapa==='alinhamento'?'selected':''}>2. Alinhamento de Orçamento</option>
-                      <option value="producao" ${et.fluxoEtapa==='producao'?'selected':''}>3. Fabricação / Produção Ativa</option>
-                      <option value="pausa" ${et.fluxoEtapa==='pausa'?'selected':''}>⏸ Parada Estratégica (Mão de Obra)</option>
-                    </select>
-                  `:''}
+                  <textarea id="obs-${index}" placeholder="Editar observações..." rows="2">${et.observacoes}</textarea>
+                  <textarea id="reg-${index}" placeholder="Editar registro técnico interno..." rows="2">${et.registroTecnico}</textarea>
                 </div>
               </div>
             ` : ''}
@@ -746,313 +709,86 @@ function renderTabContent(cli){
         </div>
       `;
     });
-
     html += `</div>`;
-  } 
-  
-  else if(db.activeTab === 'pendencias') {
+  } else if(db.activeTab === 'pendencias') {
     html += `
-      <div class="section-head"><h2 class="section-title">Checklist de Itens & Pendências</h2></div>
-      
-      ${db.currentUserMode === 'admin' ? `
-        <div class="admin-actions-container" style="margin-bottom:16px;">
-          <div class="admin-actions-title">Adicionar Item ao Checklist</div>
-          <div class="admin-input-group">
-            <input type="text" id="newPendTxt" placeholder="Descreva a nova pendência ou conferência...">
-            <button class="btn-sm primary" onclick="addPendencia('${cli.id}')">Adicionar</button>
-          </div>
+      <div class="section-head"><h2 class="section-title">Lista de Pendências</h2></div>
+      ${cli.pendencias.map(p => `
+        <div class="pend-item ${p.done ? 'done' : ''}">
+          <div class="pend-check">${p.done ? '✓' : ''}</div>
+          <div class="pend-txt">${p.txt}</div>
         </div>
-      ` : ''}
-
-      <div>
-        ${cli.pendencias.length === 0 ? '<p class="empty">Nenhuma pendência pendente no momento.</p>' : cli.pendencias.map(p => `
-          <div class="pend-item ${p.done ? 'done' : ''}">
-            <div class="pend-check" ${db.currentUserMode === 'admin' ? `onclick="togglePendencia('${cli.id}', ${p.id})"` : ''}>
-              ${p.done ? '✓' : ''}
-            </div>
-            <div class="pend-txt">${p.txt}</div>
-            ${db.currentUserMode === 'admin' ? `<button style="background:none; border:none; color:var(--brick); cursor:pointer;" onclick="deletePendencia('${cli.id}', ${p.id})">❌</button>` : ''}
-          </div>
-        `).join('')}
-      </div>
+      `).join('')}
     `;
-  } 
-  
-  else if(db.activeTab === 'visitas') {
+  } else if(db.activeTab === 'visitas') {
     html += `
-      <div class="section-head"><h2 class="section-title">Acompanhamento de Visitas Técnicas</h2></div>
+      <div class="section-head"><h2 class="section-title">Próximas Visitas Técnicas</h2></div>
       <div class="visita-card">
-        <div class="visita-lbl">Próxima Visita Agendada ou Último Registro</div>
-        <div class="visita-data">${cli.visitaData || 'Sem data definida'}</div>
-        <div class="visita-desc">${cli.visitaDesc || 'Nenhuma observação cadastrada para a visita.'}</div>
+        <div class="visita-lbl">Agendamento</div>
+        <div class="visita-data">${cli.visitaData}</div>
+        <div class="visita-desc">${cli.visitaDesc}</div>
       </div>
-
-      ${db.currentUserMode === 'admin' ? `
-        <div class="admin-actions-container">
-          <div class="admin-actions-title">Atualizar Dados de Visita Técnica</div>
-          <div class="field">
-            <label>Data da Visita</label>
-            <input type="text" id="vDataInput" value="${cli.visitaData || ''}" placeholder="Ex: 25 de Outubro, 2026">
-          </div>
-          <div class="field">
-            <label>Descrição do Relatório / Status</label>
-            <textarea id="vDescInput" rows="3" placeholder="Insira as observações técnicas constatadas na obra...">${cli.visitaDesc || ''}</textarea>
-          </div>
-          <button class="btn-sm primary" onclick="salvarVisita('${cli.id}')">Atualizar Visita</button>
-        </div>
-      ` : ''}
     `;
   }
-
   container.innerHTML = html;
 }
 
-// FORMATADORES E COMPONENTES AUXILIARES
-function getAnexoIcon(tipo){
-  if(tipo === 'pdf') return '📕';
+function renderComponenteFluxo(et) {
+  return `
+    <div class="fluxo-box">
+      <div class="fluxo-title">🧱 Fluxo de Execução e Alinhamento</div>
+      <div class="fluxo-wrap">
+        <div class="fluxo-item">
+          <div class="fluxo-dot ${et.fluxoEtapa === 'alinhamento' ? 'azul' : 'verde'}">1</div>
+          <div class="fluxo-body">
+            <div class="fluxo-label">Alinhamento Inicial e Medidas</div>
+            <div class="fluxo-pill azul">Em andamento</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function getAnexoIcon(tipo) {
+  if(tipo === 'pdf') return '📄';
   if(tipo === 'imagem') return '🖼️';
   return '🔗';
 }
 
-function actionAnexo(acao, nome){
-  showToast(`${acao} executado com sucesso para o arquivo: ${nome}`);
+function actionAnexo(acao, nome) {
+  showToast(`${acao} o arquivo: ${nome}`);
 }
 
-function renderComponenteFluxo(etapa){
-  let f = etapa.fluxoEtapa || 'detalhamento';
-  return `
-    <div class="fluxo-box">
-      <div class="fluxo-title">📐 Status Atual do Fluxo de Mobiliário Sob Medida</div>
-      <div class="fluxo-wrap">
-        <div class="fluxo-item">
-          <div class="fluxo-dot ${f==='detalhamento'?'azul':'verde'}">1</div>
-          <div class="fluxo-body">
-            <div class="fluxo-label">Detalhamento Técnico (Escala 1:1 DWG)</div>
-            <div class="fluxo-sub">Envio de arquivos técnicos consolidados diretamente para a fábrica para evitar erros de leitura gráfica.</div>
-            ${f==='detalhamento'?'<span class="fluxo-pill azul">ETAPA ATUAL</span>':''}
-          </div>
-        </div>
-        <div class="fluxo-item">
-          <div class="fluxo-dot ${f==='alinhamento'?'azul':(f==='producao'?'verde':'cinza')}">2</div>
-          <div class="fluxo-body">
-            <div class="fluxo-label">Alinhamento do Orçamento & Engenharia</div>
-            <div class="fluxo-sub">Validação de custos de frete, montagem e compatibilização estrutural.</div>
-            ${f==='alinhamento'?'<span class="fluxo-pill azul">ETAPA ATUAL</span>':''}
-          </div>
-        </div>
-        <div class="fluxo-item">
-          <div class="fluxo-dot ${f==='producao'?'azul':'cinza'}">3</div>
-          <div class="fluxo-body">
-            <div class="fluxo-label">Produção Ativa em Fábrica</div>
-            <div class="fluxo-sub">O mobiliário entrou na linha de corte e acabamento industrial de alta precisão.</div>
-            ${f==='producao'?'<span class="fluxo-pill azul">ETAPA ATUAL</span>':''}
-          </div>
-        </div>
-        ${f === 'pausa' ? `
-          <div class="fluxo-item">
-            <div class="fluxo-dot pausa">⏸</div>
-            <div class="fluxo-body">
-              <div class="fluxo-label">Parada Estratégica das Equipes</div>
-              <div class="fluxo-sub">Aguardando a liberação de outras frentes de serviço (gesso ou pintura) para não comprometer o material.</div>
-              <span class="fluxo-pill laranja">STATUS DE RETENÇÃO</span>
-            </div>
-          </div>
-        ` : ''}
-      </div>
-    </div>
-  `;
+function copiarLinkPortal() {
+  let url = document.getElementById('linkPortal').innerText;
+  navigator.clipboard.writeText(url);
+  showToast("Link copiado com sucesso!");
 }
 
-// OPERAÇÕES DO BANCO DE DADOS (ADMINS)
-function updateEtapaStatus(cliId, index, valor){
-  let cli = db.clientes.find(c => c.id === cliId);
-  if(cli) {
-    cli.etapas[index].status = valor;
-    showToast("Status da etapa atualizado.");
-    renderMainArea();
-  }
-}
-
-function updateEtapaTexto(cliId, index, campo, valor){
-  let cli = db.clientes.find(c => c.id === cliId);
-  if(cli) {
-    cli.etapas[index][campo] = valor;
-    showToast("Dados salvos e sincronizados.");
-  }
-}
-
-function adicionarAnexoAdmin(cliId, index){
-  let cli = db.clientes.find(c => c.id === cliId);
-  let nome = document.getElementById(`newAnexoNome_${index}`).value;
-  let tipo = document.getElementById(`newAnexoTipo_${index}`).value;
-  
-  if(!nome) { showToast("Digite um nome para o arquivo."); return; }
-  
-  cli.etapas[index].anexos.push({ nome: nome, tipo: tipo, url: "#" });
-  showToast("Novo arquivo anexado! Sincronizado com o portal.");
-  renderMainArea();
-}
-
-function toggleFluxoMobiliario(cliId, index, checked){
-  let cli = db.clientes.find(c => c.id === cliId);
-  if(cli) {
-    cli.etapas[index].fluxoMobiliario = checked;
-    cli.etapas[index].fluxoEtapa = checked ? 'detalhamento' : false;
-    renderMainArea();
-  }
-}
-
-function changeFluxoEtapa(cliId, index, valor){
-  let cli = db.clientes.find(c => c.id === cliId);
-  if(cli) {
-    cli.etapas[index].fluxoEtapa = valor;
-    renderMainArea();
-  }
-}
-
-function togglePendencia(cliId, pid){
-  let cli = db.clientes.find(c => c.id === cliId);
-  let p = cli.pendencias.find(item => item.id === pid);
-  if(p) { p.done = !p.done; renderMainArea(); }
-}
-
-function addPendencia(cliId){
-  let txt = document.getElementById('newPendTxt').value;
-  if(!txt) return;
-  let cli = db.clientes.find(c => c.id === cliId);
-  cli.pendencias.push({ id: Date.now(), txt: txt, done: false });
-  renderMainArea();
-}
-
-function deletePendencia(cliId, pid){
-  let cli = db.clientes.find(c => c.id === cliId);
-  cli.pendencias = cli.pendencias.filter(item => item.id !== pid);
-  renderMainArea();
-}
-
-function salvarVisita(cliId){
-  let cli = db.clientes.find(c => c.id === cliId);
-  cli.visitaData = document.getElementById('vDataInput').value;
-  cli.visitaDesc = document.getElementById('vDescInput').value;
-  showToast("Relatório de Visita salvo!");
-  renderMainArea();
-}
-
-// SISTEMA DE VALIDAÇÃO (GATILHO DO CLIENTE)
-let contextoValidacao = null;
-
-function abrirModalValidacao(cliId, etapaIndex, decisao){
-  contextoValidacao = { cliId, etapaIndex, decisao };
-  document.getElementById('mvTitle').innerText = decisao === 'aprovado' ? 'Confirmar Aprovação' : 'Solicitar Ajustes/Alterações';
-  document.getElementById('mvFeedback').value = '';
-  document.getElementById('modalValidacao').classList.remove('hidden');
-}
-
-function fecharModalValidacao(){
-  document.getElementById('modalValidacao').classList.add('hidden');
-  contextoValidacao = null;
-}
-
-function confirmarValidacaoCliente(){
-  if(!contextoValidacao) return;
-  let { cliId, etapaIndex, decisao } = contextoValidacao;
-  let text = document.getElementById('mvFeedback').value;
-
-  let cli = db.clientes.find(c => c.id === cliId);
-  if(cli) {
-    cli.etapas[etapaIndex].validacao = {
-      status: decisao,
-      feedback: text || (decisao === 'aprovado' ? 'Etapa validada com sucesso.' : 'Solicitação de modificação cadastrada.'),
-      data: new Date().toLocaleDateString('pt-BR')
-    };
-    
-    // Se aprovado, muda o status visual automaticamente
-    if(decisao === 'aprovado') {
-      cli.etapas[etapaIndex].status = 'concluida';
-    } else {
-      cli.etapas[etapaIndex].status = 'pendente';
-    }
-
-    showToast("Sua decisão foi processada com sucesso!");
-    fecharModalValidacao();
-    renderMainArea();
-  }
-}
-
-// INCLUSÃO DE NOVOS CLIENTES (ADMIN)
-function goNovoCliente(){
-  document.getElementById('mainArea').innerHTML = `
-    <div class="fcard">
-      <div class="ftitle">Cadastrar Novo Projeto</div>
-      <div class="field">
-        <label>Nome Completo do Cliente</label>
-        <input type="text" id="fNome" placeholder="Ex: Jessica Silva">
-      </div>
-      <div class="field">
-        <label>Identificação da Obra / Endereço</label>
-        <input type="text" id="fObra" placeholder="Ex: Studio Gravatá | Unidade 104">
-      </div>
-      <div class="field">
-        <label>Cidade / Estado</label>
-        <input type="text" id="fCidade" value="Recife - PE">
-      </div>
-      <div class="field">
-        <label>Token Único de Acesso (Link)</label>
-        <input type="text" id="fToken" placeholder="Ex: jessica55">
-      </div>
-      <div class="fbtns">
-        <button class="btn-sm primary" onclick="salvarNovoCliente()">Criar Projeto</button>
-        <button class="btn-sm" onclick="renderMainArea()">Cancelar</button>
-      </div>
-    </div>
-  `;
-}
-
-function salvarNovoCliente(){
-  let nome = document.getElementById('fNome').value;
-  let obra = document.getElementById('fObra').value;
-  let cidade = document.getElementById('fCidade').value;
-  let token = document.getElementById('fToken').value;
-
-  if(!nome || !token) { showToast("Preencha o Nome e o Token do cliente."); return; }
-
-  let novo = {
-    id: "cli_" + Date.now(),
-    nome: nome,
-    obra: obra,
-    cidade: cidade,
-    token: token,
-    visitaData: "",
-    visitaDesc: "",
-    pendencias: [],
-    etapas: [
-      { num: "01", nome: "Briefing Inicial", desc: "Estudos preliminares e alinhamento conceitual.", status: "ativa", observacoes: "", historico: "", registroTecnico: "", fluxoMobiliario: false, validacao: { status: "pendente", feedback: "", data: "" }, attachments: [], anexos: [] },
-      { num: "02", nome: "Executivo e Detalhamento", desc: "Plantas técnicas finais para obra.", status: "pendente", observacoes: "", historico: "", registroTecnico: "", fluxoMobiliario: false, validacao: { status: "pendente", feedback: "", data: "" }, attachments: [], anexos: [] }
-    ]
-  };
-
-  db.clientes.push(novo);
-  db.selectedClientId = novo.id;
-  showToast("Cliente criado com sucesso!");
-  renderSystem();
-}
-
-// UTILITÁRIOS
-function showToast(msg){
+function showToast(msg) {
   let t = document.getElementById('toast');
   t.innerText = msg;
   t.classList.add('on');
   setTimeout(() => t.classList.remove('on'), 3000);
 }
 
-function copiarLinkPortal(){
-  let url = document.getElementById('linkPortal').innerText;
-  navigator.clipboard.writeText(url).then(() => {
-    showToast("Link exclusivo copiado para a área de transferência!");
-  });
+function abrirModalValidacao(cliId, index, status) {
+  document.getElementById('modalValidacao').classList.remove('hidden');
 }
 
+function fecharModalValidacao() {
+  document.getElementById('modalValidacao').classList.add('hidden');
+}
+
+function confirmarValidacaoCliente() {
+  fecharModalValidacao();
+  showToast("Decisão salva com sucesso!");
+}
+
+// Inicializa o sistema ao carregar a página
 window.onload = init;
 </script>
+
 </body>
 </html>
