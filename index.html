@@ -1079,7 +1079,13 @@ async function setFluxoMob(cid, eid, campo, valor){
   if(campo==='impactoExecutivo' && valor==='sim') e.fluxo.pausado=true;
   await save();
   toast('Atualizado ✓');
-  renderClienteAdmin(); tab(2);
+  // Re-renderizar conforme o modo (admin ou visão pública do cliente)
+  if(!el('vPub').classList.contains('hidden')){
+    showPub(cid);
+    setTimeout(()=>pubTab(2),50);
+  } else {
+    renderClienteAdmin(); tab(2);
+  }
 }
 
 function renderEtapasHTML(c){
@@ -1330,7 +1336,7 @@ function showPub(cid){
 
   const etapas=c.etapas||ETAPAS_DEFAULT.map(e=>({...e}));
   const sl={pendente:'Pendente',ativa:'Em andamento',concluida:'Concluído'};
-  el('pEtapaList').innerHTML=etapas.map(e=>`<div class="pub-etapa ${e.status}"><div class="pub-circle">${e.status==='concluida'?'✓':e.status==='ativa'?'◆':'◇'}</div><div style="flex:1"><div class="pub-etapa-nome">${esc(e.nome)}</div><span class="pub-etapa-pill">${sl[e.status]||''}</span>${e.obs?`<div style="font-size:12px;color:var(--ink2);background:var(--stone2);border-left:2px solid var(--brick);padding:8px 10px;margin-top:8px;line-height:1.7;border-radius:6px">${esc(e.obs)}</div>`:''}</div></div>`).join('');
+  el('pEtapaList').innerHTML=etapas.map(e=>`<div class="pub-etapa ${e.status}"><div class="pub-circle">${e.status==='concluida'?'✓':e.status==='ativa'?'◆':'◇'}</div><div style="flex:1"><div class="pub-etapa-nome">${esc(e.nome)}</div><span class="pub-etapa-pill">${sl[e.status]||''}</span>${e.obs?`<div style="font-size:12px;color:var(--ink2);background:var(--stone2);border-left:2px solid var(--brick);padding:8px 10px;margin-top:8px;line-height:1.7;border-radius:6px">${esc(e.obs)}</div>`:''}${e.id==='e6'?renderFluxoMobiliario(e,c.id):''}</div></div>`).join('');
 
   const links=c.links||[];
   const pll=el('pLinkList'),ple=el('pLinkEmpty');
