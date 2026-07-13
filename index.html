@@ -710,7 +710,44 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
     <div id="ptc3" class="hidden"><div id="pVisitaView"></div></div>
     <div id="ptc4" class="hidden"><div class="empty hidden" id="pLinkEmpty"><div class="empty-icon">🔗</div><div class="empty-txt">Nenhum link</div></div><div id="pLinkList"></div></div>
     <div id="ptc5" class="hidden"><div id="cEntregasPub"></div></div>
-  </div>
+ <div id="ptc6" class="hidden">
+
+    <div style="padding:24px;">
+        <h2>💬 Assessoria Técnica</h2>
+
+        <p>
+            Utilize este espaço para registrar dúvidas, pedidos de orientação ou compartilhar informações relacionadas ao desenvolvimento do projeto.
+        </p>
+
+        <p>
+            Para manter a organização das informações, as orientações são realizadas preferencialmente por este Portal ou durante as reuniões de assessoria.
+        </p>
+
+        <p><strong>
+            Mensagens enviadas por WhatsApp destinam-se apenas a comunicações rápidas e não substituem orientações técnicas, validações ou revisões do projeto.
+        </strong></p>
+
+        <label><strong>Assunto</strong></label><br>
+        <input type="text" style="width:100%;padding:10px;">
+
+        <br><br>
+
+        <label><strong>Mensagem</strong></label><br>
+        <textarea rows="6" style="width:100%;padding:10px;"></textarea>
+
+        <br><br>
+
+        <button class="btn">Enviar Mensagem</button>
+
+        <hr>
+
+        <h3>Histórico de Mensagens</h3>
+
+        <p>Nenhuma mensagem registrada.</p>
+
+    </div>
+
+ </div>
 </div>
 
 <!-- MODAL -->
@@ -1303,7 +1340,7 @@ async function deleteEntItem(lista,id){const ent=getEnt();ent[lista]=ent[lista].
 async function addEntItem(lista){const ent=getEnt();ent[lista].push({id:'e'+(entNextId++),nome:'Novo item',obs:'',tipo:'padrao',status:'',edit:true});await save();renderEntregas('admin');}
 
 // PUB TABS
-function pubTab(n){for(let i=0;i<6;i++){el('pt'+i)?.classList.toggle('on',i===n);el('ptc'+i)?.classList.toggle('hidden',i!==n);}}
+function pubTab(n){for(let i=0;i<7;i++){el('pt'+i)?.classList.toggle('on',i===n);el('ptc'+i)?.classList.toggle('hidden',i!==n);}}
 
 // PÚBLICO
 function showPub(cid){
