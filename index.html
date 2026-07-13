@@ -1,67 +1,34 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Liliane Almeida Arquitetura</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --brick:#C1440E;
-  --brick-deep:#9B3209;
-  --brick-pale:#F5E8E2;
-  --ink:#1A1410;
-  --ink2:#3D2E26;
-  --stone:#F9F6F2;
-  --stone2:#EDE8E1;
-  --line:#DDD5CC;
-  --line2:#C8BDB4;
-  --mist:#8C7B70;
-  --white:#FFFFFF;
-  --green:#3A6B4F;
-  --green2:#EAF2EC;
-  --blue:#1E3E6E;
-  --blue-pale:#EAF0FA;
-  --orange:#B86820;
-  --orange-pale:#FAF0E0;
-}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
-.hidden{display:none!important}
-
 /* ── LOADING ── */
 #vLoading{
-  position:fixed;inset:0;background:var(--ink);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  z-index:999;transition:opacity .5s;
+position:fixed;inset:0;background:var(--ink);
+display:flex;flex-direction:column;align-items:center;justify-content:center;
+z-index:999;transition:opacity .5s;
 }
 #vLoading .logo-load{
-  font-family:'Cormorant Garamond',serif;
-  font-size:48px;font-weight:300;letter-spacing:12px;color:var(--white);
-  animation:breathe 2s ease-in-out infinite;
+font-family:'Cormorant Garamond',serif;
+font-size:48px;font-weight:300;letter-spacing:12px;color:var(--white);
+animation:breathe 2s ease-in-out infinite;
 }
 #vLoading .sub-load{
-  font-size:10px;letter-spacing:4px;color:rgba(255,255,255,.4);margin-top:8px;text-transform:uppercase;
+font-size:10px;letter-spacing:4px;color:rgba(255,255,255,.4);margin-top:8px;text-transform:uppercase;
 }
 @keyframes breathe{0%,100%{opacity:.3}50%{opacity:1}}
 
 /* ── TOAST ── */
 .toast{
-  position:fixed;bottom:28px;left:50%;transform:translateX(-50%);
-  background:var(--ink);color:var(--white);
-  padding:12px 24px;border-radius:100px;
-  font-size:12px;letter-spacing:.5px;
-  z-index:500;opacity:0;transition:opacity .3s;pointer-events:none;
-  white-space:nowrap;
+position:fixed;bottom:28px;left:50%;transform:translateX(-50%);
+background:var(--ink);color:var(--white);
+padding:12px 24px;border-radius:100px;
+font-size:12px;letter-spacing:.5px;
+z-index:500;opacity:0;transition:opacity .3s;pointer-events:none;
+white-space:nowrap;
 }
 .toast.on{opacity:1}
 
 /* ── LOGIN ── */
 #vLogin{
-  min-height:100vh;display:flex;align-items:center;justify-content:center;
-  background:var(--ink);padding:24px;
+min-height:100vh;display:flex;align-items:center;justify-content:center;
+background:var(--ink);padding:24px;
 }
 .login-wrap{width:100%;max-width:380px;text-align:center}
 .login-logo{font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:300;letter-spacing:16px;color:var(--white);margin-bottom:4px}
@@ -69,16 +36,16 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
 .login-tagline{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:2px;margin-bottom:48px}
 .login-field{position:relative;margin-bottom:16px}
 .login-field input{
-  width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
-  color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;padding:16px 20px;outline:none;
-  border-radius:12px;transition:border-color .2s;
+width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;padding:16px 20px;outline:none;
+border-radius:12px;transition:border-color .2s;
 }
 .login-field input::placeholder{color:rgba(255,255,255,.3)}
 .login-field input:focus{border-color:var(--brick)}
 .login-btn{
-  width:100%;background:var(--brick);color:var(--white);border:none;border-radius:12px;padding:16px;
-  font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;letter-spacing:1px;cursor:pointer;
-  transition:background .2s;margin-top:4px;
+width:100%;background:var(--brick);color:var(--white);border:none;border-radius:12px;padding:16px;
+font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;letter-spacing:1px;cursor:pointer;
+transition:background .2s;margin-top:4px;
 }
 .login-btn:hover{background:var(--brick-deep)}
 .login-err{font-size:12px;color:#FF6B6B;margin-top:12px;opacity:0;transition:opacity .2s}
@@ -86,10 +53,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
 
 /* ── HEADER ── */
 .hdr{
-  background:var(--white);border-bottom:1px solid var(--line);
-  padding:0 24px;height:60px;
-  display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:0;z-index:100;
+background:var(--white);border-bottom:1px solid var(--line);
+padding:0 24px;height:60px;
+display:flex;align-items:center;justify-content:space-between;
+position:sticky;top:0;z-index:100;
 }
 .hdr-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;letter-spacing:8px;color:var(--ink)}
 .hdr-logo span{color:var(--brick)}
@@ -99,9 +66,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
 .hdr-mode-badge.admin{background:var(--brick-pale);color:var(--brick)}
 .hdr-mode-badge.client{background:var(--blue-pale);color:var(--blue)}
 .btn-exit{
-  background:none;border:1px solid var(--line2);color:var(--mist);
-  font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:1px;
-  padding:7px 16px;border-radius:100px;cursor:pointer;transition:all .2s;
+background:none;border:1px solid var(--line2);color:var(--mist);
+font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:1px;
+padding:7px 16px;border-radius:100px;cursor:pointer;transition:all .2s;
 }
 .btn-exit:hover{border-color:var(--brick);color:var(--brick)}
 
@@ -110,29 +77,29 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
 
 /* ── SIDEBAR ── */
 .sidebar{
-  width:280px;background:var(--white);border-right:1px solid var(--line);
-  padding:24px 16px;flex-shrink:0;overflow-y:auto;
+width:280px;background:var(--white);border-right:1px solid var(--line);
+padding:24px 16px;flex-shrink:0;overflow-y:auto;
 }
 .sidebar-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--mist);margin-bottom:12px;padding:0 8px}
 .cli-item{
-  display:flex;align-items:center;gap:12px;
-  padding:11px 12px;border-radius:10px;cursor:pointer;
-  transition:background .15s;margin-bottom:2px;
+display:flex;align-items:center;gap:12px;
+padding:11px 12px;border-radius:10px;cursor:pointer;
+transition:background .15s;margin-bottom:2px;
 }
 .cli-item:hover{background:var(--stone)}
 .cli-item.on{background:var(--brick-pale)}
 .cli-av{
-  width:36px;height:36px;border-radius:50%;background:var(--brick);color:var(--white);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;flex-shrink:0;
+width:36px;height:36px;border-radius:50%;background:var(--brick);color:var(--white);
+display:flex;align-items:center;justify-content:center;
+font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;flex-shrink:0;
 }
 .cli-info{overflow:hidden}
 .cli-nome{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cli-obra{font-size:11px;color:var(--mist);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .btn-add-cli{
-  width:100%;margin-top:12px;padding:10px;border:1.5px dashed var(--line2);background:none;
-  border-radius:10px;color:var(--mist);font-family:'DM Sans',sans-serif;font-size:12px;
-  cursor:pointer;transition:all .2s;
+width:100%;margin-top:12px;padding:10px;border:1.5px dashed var(--line2);background:none;
+border-radius:10px;color:var(--mist);font-family:'DM Sans',sans-serif;font-size:12px;
+cursor:pointer;transition:all .2s;
 }
 .btn-add-cli:hover{border-color:var(--brick);color:var(--brick)}
 
@@ -143,9 +110,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
 .hero-card{background:var(--white);border-radius:16px;padding:28px;margin-bottom:24px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 .cli-header{display:flex;gap:16px;align-items:flex-start;margin-bottom:20px}
 .cli-av-lg{
-  width:56px;height:56px;border-radius:50%;background:var(--brick);color:var(--white);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;flex-shrink:0;
+width:56px;height:56px;border-radius:50%;background:var(--brick);color:var(--white);
+display:flex;align-items:center;justify-content:center;
+font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;flex-shrink:0;
 }
 .cli-nome-lg{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;margin-bottom:2px}
 .cli-obra-lg{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--brick);margin-bottom:10px}
@@ -153,21 +120,21 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
 .cli-dado{font-size:12px;color:var(--mist);display:flex;align-items:center;gap:6px}
 .link-row{display:flex;align-items:center;gap:10px;padding-top:16px;border-top:1px solid var(--line);flex-wrap:wrap;margin-top:16px}
 .link-url{
-  flex:1;font-size:11px;font-family:monospace;background:var(--stone);border:1px solid var(--line);
-  padding:8px 12px;border-radius:8px;color:var(--mist);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+flex:1;font-size:11px;font-family:monospace;background:var(--stone);border:1px solid var(--line);
+padding:8px 12px;border-radius:8px;color:var(--mist);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
 }
 .btn-copy{
-  background:var(--brick);color:var(--white);border:none;border-radius:8px;padding:8px 16px;
-  font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.5px;cursor:pointer;transition:background .2s;white-space:nowrap;
+background:var(--brick);color:var(--white);border:none;border-radius:8px;padding:8px 16px;
+font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.5px;cursor:pointer;transition:background .2s;white-space:nowrap;
 }
 .btn-copy:hover{background:var(--brick-deep)}
 
 /* ── TABS ── */
 .tabs{display:flex;border-bottom:1px solid var(--line);margin-bottom:24px;overflow-x:auto;gap:0}
 .tab{
-  padding:12px 18px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;background:none;border:none;
-  border-bottom:2px solid transparent;color:var(--mist);font-family:'DM Sans',sans-serif;cursor:pointer;
-  margin-bottom:-1px;white-space:nowrap;transition:all .2s;
+padding:12px 18px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;background:none;border:none;
+border-bottom:2px solid transparent;color:var(--mist);font-family:'DM Sans',sans-serif;cursor:pointer;
+margin-bottom:-1px;white-space:nowrap;transition:all .2s;
 }
 .tab.on{color:var(--brick);border-bottom-color:var(--brick);font-weight:500}
 .tab:hover{color:var(--ink)}
@@ -176,8 +143,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
 .section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
 .section-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400}
 .btn-sm{
-  background:none;border:1px solid var(--line2);color:var(--mist);font-family:'DM Sans',sans-serif;
-  font-size:11px;letter-spacing:.5px;padding:7px 14px;border-radius:100px;cursor:pointer;transition:all .2s;
+background:none;border:1px solid var(--line2);color:var(--mist);font-family:'DM Sans',sans-serif;
+font-size:11px;letter-spacing:.5px;padding:7px 14px;border-radius:100px;cursor:pointer;transition:all .2s;
 }
 .btn-sm:hover{border-color:var(--brick);color:var(--brick)}
 .btn-sm.primary{background:var(--brick);border-color:var(--brick);color:var(--white)}
@@ -189,9 +156,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
 .etapa-item:last-child{border-bottom:none}
 .etapa-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
 .etapa-circle{
-  width:44px;height:44px;border-radius:50%;border:2px solid var(--line2);
-  display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:bold;
-  background:var(--white);color:var(--mist);transition:all .3s;
+width:44px;height:44px;border-radius:50%;border:2px solid var(--line2);
+display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:bold;
+background:var(--white);color:var(--mist);transition:all .3s;
 }
 .etapa-item.concluida .etapa-circle{background:var(--green);border-color:var(--green);color:var(--white)}
 .etapa-item.ativa .etapa-circle{background:var(--brick);border-color:var(--brick);color:var(--white)}
@@ -201,8 +168,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
 .etapa-header-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;flex-wrap:wrap}
 .etapa-nome{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--ink)}
 .etapa-pill{
-  font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:100px;
-  display:inline-block;font-weight:500;
+font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:100px;
+display:inline-block;font-weight:500;
 }
 .etapa-item.concluida .etapa-pill{background:var(--green2);color:var(--green);border:1px solid #C0DDC9}
 .etapa-item.ativa .etapa-pill{background:var(--brick-pale);color:var(--brick);border:1px solid #EDCFC4}
@@ -218,8 +185,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
 /* ANEXOS ROBUSTOS CONTROLE VISUAL */
 .anexos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:8px}
 .anexo-file-card{
-  background:var(--stone);border:1px solid var(--line);border-radius:10px;
-  padding:12px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;
+background:var(--stone);border:1px solid var(--line);border-radius:10px;
+padding:12px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;
 }
 .anexo-info{display:flex;align-items:center;gap:8px}
 .anexo-icon{font-size:20px;flex-shrink:0}
@@ -228,8 +195,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
 .anexo-type-badge{font-size:9px;color:var(--mist);text-transform:uppercase}
 .anexo-actions-row{display:flex;border-top:1px solid var(--line);padding-top:8px;gap:4px;justify-content:space-between}
 .anexo-action-btn{
-  background:none;border:none;color:var(--brick);font-size:11px;font-weight:500;
-  cursor:pointer;display:flex;align-items:center;gap:3px;font-family:'DM Sans',sans-serif;
+background:none;border:none;color:var(--brick);font-size:11px;font-weight:500;
+cursor:pointer;display:flex;align-items:center;gap:3px;font-family:'DM Sans',sans-serif;
 }
 .anexo-action-btn:hover{color:var(--brick-deep);text-decoration:underline}
 
@@ -261,8 +228,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
 .validacao-feedback-text{font-size:12px;color:var(--ink2);line-height:1.6;font-style:italic;background:var(--white);padding:10px;border-radius:6px;border:1px solid var(--line);margin-bottom:10px}
 .client-decision-row{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
 .btn-decision{
-  padding:10px 18px;font-size:11px;font-weight:500;letter-spacing:.5px;border-radius:100px;
-  cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;border:none;
+padding:10px 18px;font-size:11px;font-weight:500;letter-spacing:.5px;border-radius:100px;
+cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;border:none;
 }
 .btn-decision.approve{background:var(--green);color:var(--white)}
 .btn-decision.approve:hover{background:#2D543E}
@@ -274,29 +241,29 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
 .admin-actions-title{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--orange);font-weight:700;margin-bottom:10px}
 .admin-input-group{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
 .admin-input-group input, .admin-input-group textarea, .admin-input-group select{
-  flex:1;min-width:160px;background:var(--white);border:1px solid var(--line);
-  color:var(--ink);font-family:'DM Sans',sans-serif;font-size:12px;padding:8px 12px;border-radius:8px;outline:none;
+flex:1;min-width:160px;background:var(--white);border:1px solid var(--line);
+color:var(--ink);font-family:'DM Sans',sans-serif;font-size:12px;padding:8px 12px;border-radius:8px;outline:none;
 }
 .admin-input-group textarea{min-width:100%;resize:vertical}
 
 /* ── ABAS DE PENDÊNCIAS / VISITAS ── */
 .pend-item{
-  display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--line);
-  border-radius:10px;padding:14px 16px;margin-bottom:8px;
+display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--line);
+border-radius:10px;padding:14px 16px;margin-bottom:8px;
 }
 .pend-item.done{background:var(--stone2)}
 .pend-check{
-  width:20px;height:20px;border:2px solid var(--line2);border-radius:6px;
-  display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--white);
-  background:var(--white);transition:all .2s;
+width:20px;height:20px;border:2px solid var(--line2);border-radius:6px;
+display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--white);
+background:var(--white);transition:all .2s;
 }
 .pend-item.done .pend-check{background:var(--green);border-color:var(--green)}
 .pend-txt{flex:1;font-size:13px;color:var(--ink2)}
 .pend-item.done .pend-txt{color:var(--mist);text-decoration:line-through}
 
 .visita-card{
-  background:linear-gradient(135deg,var(--brick) 0%,var(--brick-deep) 100%);
-  border-radius:16px;padding:28px;margin-bottom:20px;color:var(--white);
+background:linear-gradient(135deg,var(--brick) 0%,var(--brick-deep) 100%);
+border-radius:16px;padding:28px;margin-bottom:20px;color:var(--white);
 }
 .visita-lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;opacity:.7;margin-bottom:8px}
 .visita-data{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;margin-bottom:4px}
@@ -308,8 +275,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
 .field{margin-bottom:18px}
 .field label{display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--brick);margin-bottom:6px}
 .field input, .field textarea{
-  width:100%;background:var(--stone);border:1px solid var(--line);color:var(--ink);
-  font-family:'DM Sans',sans-serif;font-size:13px;padding:11px 14px;outline:none;border-radius:10px;
+width:100%;background:var(--stone);border:1px solid var(--line);color:var(--ink);
+font-family:'DM Sans',sans-serif;font-size:13px;padding:11px 14px;outline:none;border-radius:10px;
 }
 
 /* ── MODAL ── */
@@ -322,473 +289,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
 .empty-icon{font-size:40px;margin-bottom:12px;opacity:.4}
 
 @media(max-width:768px){
-  .sys-wrap{flex-direction:column}
-  .sidebar{width:100%;border-right:none;border-bottom:1px solid var(--line);max-height:220px}
-  .main{padding:16px}
+.sys-wrap{flex-direction:column}
+.sidebar{width:100%;border-right:none;border-bottom:1px solid var(--line);max-height:220px}
+.main{padding:16px}
 }
-</style>
-</head>
-<body>
-
-<div class="toast" id="toast"></div>
-
-<div id="vLoading">
-  <div class="logo-load">LA</div>
-  <div class="sub-load">Liliane Almeida Arquitetura</div>
-</div>
-
-<div id="vLogin" class="hidden">
-  <div class="login-wrap">
-    <div class="login-logo">LA</div>
-    <div class="login-brand">Liliane Almeida Arquitetura & Interiores</div>
-    <div class="login-tagline">Painel de Autenticação</div>
-    <div class="login-field">
-      <input type="password" id="lSenha" placeholder="Digite a senha de acesso..." onkeydown="if(event.key==='Enter')login()"/>
-    </div>
-    <button class="login-btn" onclick="login()">Acessar Sistema</button>
-    <div class="login-err" id="lErr">Senha inválida ou link incorreto.</div>
-  </div>
-</div>
-
-<div id="vSystem" class="hidden">
-  <div class="hdr">
-    <div>
-      <div class="hdr-logo">L<span>A</span></div>
-      <div class="hdr-sub">Arquitetura & Interiores</div>
-    </div>
-    <div class="hdr-right">
-      <div id="modeBadge" class="hdr-mode-badge"></div>
-      <button class="btn-exit" onclick="logout()">Sair</button>
-    </div>
-  </div>
-
-  <div class="sys-wrap">
-    <div class="sidebar" id="systemSidebar">
-      <div class="sidebar-label">Projetos Ativos</div>
-      <div id="cliList"></div>
-      <button class="btn-add-cli" onclick="goNovoCliente()">+ Adicionar Cliente</button>
-    </div>
-
-    <div class="main" id="mainArea"></div>
-  </div>
-</div>
-
-<div id="modalValidacao" class="overlay hidden">
-  <div class="modal">
-    <div class="modal-title" id="mvTitle">Validar Etapa</div>
-    <div class="modal-sub" id="mvSub">Deixe as suas considerações ou observações técnicas sobre esta validação abaixo:</div>
-    <div class="field">
-      <textarea id="mvFeedback" rows="4" placeholder="Escreva aqui os detalhes..."></textarea>
-    </div>
-    <div class="modal-btns">
-      <button class="btn-sm" onclick="fecharModalValidacao()">Cancelar</button>
-      <button class="btn-sm primary" id="mvConfirmBtn" onclick="confirmarValidacaoCliente()">Salvar Decisão</button>
-    </div>
-  </div>
-</div>
-
-<script>
-// BANCO DE DADOS INTEGRADO (Única Fonte de Dados)
-let db = {
-  currentUserMode: null, // 'admin' ou 'client'
-  selectedClientId: null,
-  activeTab: 'timeline',
-  clientes: [
-    {
-      id: "cli_breno",
-      nome: "Breno Silveira",
-      obra: "Edf. Francisco Filho | Ap 1502",
-      cidade: "Recife - PE",
-      token: "breno123",
-      visitaData: "22 de Julho, 2026",
-      visitaDesc: "Visita técnica para alinhamento final de pontos de iluminação e conferência de gesso.",
-      pendencias: [
-        { id: 1, txt: "Aprovação final do layout da suíte master", done: true },
-        { id: 2, txt: "Definição do lote do Quartzito Taj Mahal", done: false },
-        { id: 3, txt: "Envio do arquivo DWG consolidado para marcenaria", done: false }
-      ],
-      etapas: [
-        {
-          num: "01",
-          nome: "Briefing & Alinhamento Conceitual",
-          desc: "Entendimento pleno das necessidades do cliente, programa de necessidades e diretrizes estéticas iniciais.",
-          status: "concluida",
-          observacoes: "Reunião de briefing executada com sucesso. Preferência clara por materiais nobres como mármore Calacatta Gold e metais bronze fosco.",
-          historico: "05/01/2026 - Briefing preenchido pelo cliente.\n10/01/2026 - Reunião conceitual finalizada.",
-          registroTecnico: "A área social necessita de ampliação total com remoção da parede do quarto reversível. Verificar infraestrutura estrutural.",
-          fluxoMobiliario: false,
-          validacao: { status: "aprovado", feedback: "Aprovado sem ressalvas! O conceito clássico contemporâneo está perfeito.", data: "12/01/2026" },
-          anexos: [
-            { nome: "Ata_de_Briefing.pdf", tipo: "pdf", url: "#" },
-            { nome: "Painel_Conceitual_V1.jpg", tipo: "imagem", url: "#" }
-          ]
-        },
-        {
-          num: "02",
-          nome: "Estudo Preliminar & Layout 3D",
-          desc: "Desenvolvimento da maquete eletrônica tridimensional e distribuição espacial dos ambientes.",
-          status: "ativa",
-          observacoes: "Modelagem atualizada no SketchUp. Inclusão dos detalhamentos e paginação inicial do piso da área gourmet.",
-          historico: "15/02/2026 - Envio da primeira versão tridimensional.\n20/02/2026 - Ajuste de pontos de iluminação solicitados.",
-          registroTecnico: "Ajustado o rebaixo do gesso para suportar a coifa embutida. Carga elétrica revisada.",
-          fluxoMobiliario: true,
-          fluxoEtapa: "alinhamento", 
-          validacao: { status: "pendente", feedback: "", data: "" },
-          anexos: [
-            { nome: "Planta_Layout_Aprovada.pdf", tipo: "pdf", url: "#" },
-            { nome: "Perspectiva_Area_Social.jpg", tipo: "imagem", url: "#" },
-            { nome: "Link_Drive_Imagens_Renderizadas", tipo: "link", url: "https://drive.google.com" }
-          ]
-        },
-        {
-          num: "03",
-          nome: "Detalhamento Executivo & Especificações",
-          desc: "Geração de plantas técnicas (pontos elétricos, hidráulicos, iluminação, gesso e marmoraria) para obra.",
-          status: "pendente",
-          observacoes: "Aguardando aprovação integral da etapa anterior para iniciar a liberação das pranchas CAD.",
-          historico: "",
-          registroTecnico: "",
-          fluxoMobiliario: false,
-          validacao: { status: "pendente", feedback: "", data: "" },
-          anexos: []
-        }
-      ]
-    }
-  ]
-};
-
-// CONTROLE DE FLUXO E LOGIN
-function init(){
-  const params = new URLSearchParams(window.location.search);
-  const clientToken = params.get('projeto') || params.get('token');
-
-  setTimeout(() => {
-    document.getElementById('vLoading').classList.add('hidden');
-    
-    if(clientToken) {
-      let encontrado = db.clientes.find(c => c.token === clientToken);
-      if(encontrado) {
-        db.currentUserMode = 'client';
-        db.selectedClientId = encontrado.id;
-        renderSystem();
-      } else {
-        showToast("Link do portal inválido.");
-        exibirLogin();
-      }
-    } else {
-      exibirLogin();
-    }
-  }, 1200);
-}
-
-function exibirLogin(){
-  document.getElementById('vLogin').classList.remove('hidden');
-}
-
-function login(){
-  let senha = document.getElementById('lSenha').value;
-  if(senha === "admin123") {
-    db.currentUserMode = 'admin';
-    document.getElementById('vLogin').classList.add('hidden');
-    renderSystem();
-  } else {
-    let encontrado = db.clientes.find(c => c.token === senha);
-    if(encontrado) {
-      db.currentUserMode = 'client';
-      db.selectedClientId = encontrado.id;
-      document.getElementById('vLogin').classList.add('hidden');
-      renderSystem();
-    } else {
-      let err = document.getElementById('lErr');
-      err.classList.add('on');
-      setTimeout(() => err.classList.remove('on'), 3000);
-    }
-  }
-}
-
-function logout(){
-  window.location.href = window.location.pathname;
-}
-
-function renderSystem(){
-  document.getElementById('vSystem').classList.remove('hidden');
-  let badge = document.getElementById('modeBadge');
-  let sidebar = document.getElementById('systemSidebar');
-
-  if(db.currentUserMode === 'admin') {
-    badge.innerText = "Painel Administrativo";
-    badge.className = "hdr-mode-badge admin";
-    sidebar.classList.remove('hidden');
-    renderSidebarList();
-    if(!db.selectedClientId && db.clientes.length > 0) {
-      db.selectedClientId = db.clientes[0].id;
-    }
-  } else {
-    badge.innerText = "Portal do Cliente (Leitura)";
-    badge.className = "hdr-mode-badge client";
-    sidebar.classList.add('hidden');
-  }
-
-  renderMainArea();
-}
-
-function renderSidebarList(){
-  let html = '';
-  db.clientes.forEach(c => {
-    let activeClass = (c.id === db.selectedClientId) ? 'on' : '';
-    html += `
-      <div class="cli-item ${activeClass}" onclick="selectCliente('${c.id}')">
-        <div class="cli-av">${c.nome.charAt(0)}</div>
-        <div class="cli-info">
-          <div class="cli-nome">${c.nome}</div>
-          <div class="cli-obra">${c.obra}</div>
-        </div>
-      </div>
-    `;
-  });
-  document.getElementById('cliList').innerHTML = html;
-}
-
-function selectCliente(id){
-  db.selectedClientId = id;
-  renderSidebarList();
-  renderMainArea();
-}
-
-// RENDERIZADOR DA ÁREA PRINCIPAL ESPELHADA
-function renderMainArea(){
-  let area = document.getElementById('mainArea');
-  let cli = db.clientes.find(c => c.id === db.selectedClientId);
-
-  if(!cli) {
-    area.innerHTML = `
-      <div class="empty">
-        <div class="empty-icon">📂</div>
-        <div class="empty-txt">Nenhum cliente selecionado ou cadastrado.</div>
-      </div>
-    `;
-    return;
-  }
-
-  let portalUrl = window.location.origin + window.location.pathname + "?projeto=" + cli.token;
-
-  let html = `
-    <div class="hero-card">
-      <div class="cli-header">
-        <div class="cli-av-lg">${cli.nome.charAt(0)}</div>
-        <div>
-          <div class="cli-nome-lg">${cli.nome}</div>
-          <div class="cli-obra-lg">${cli.obra}</div>
-          <div class="cli-dados">
-            <div class="cli-dado">📍 ${cli.cidade}</div>
-            <div class="cli-dado">🔑 Código/Token: <strong>${cli.token}</strong></div>
-          </div>
-        </div>
-      </div>
-      
-      ${db.currentUserMode === 'admin' ? `
-        <div class="link-row">
-          <div class="link-url" id="linkPortal">${portalUrl}</div>
-          <button class="btn-copy" onclick="copiarLinkPortal()">Copiar Link do Cliente</button>
-        </div>
-      ` : ''}
-    </div>
-
-    <div class="tabs">
-      <button class="tab ${db.activeTab === 'timeline'?'on':''}" onclick="switchTab('timeline')">Evolução & Cronograma</button>
-      <button class="tab ${db.activeTab === 'pendencias'?'on':''}" onclick="switchTab('pendencias')">Pendências & Itens</button>
-      <button class="tab ${db.activeTab === 'visitas'?'on':''}" onclick="switchTab('visitas')">Visitas Técnicas</button>
-    </div>
-
-    <div id="tabContent"></div>
-  `;
-
-  area.innerHTML = html;
-  renderTabContent(cli);
-}
-
-function switchTab(tabName){
-  db.activeTab = tabName;
-  renderMainArea();
-}
-
-// RENDERIZADOR DE CONTEÚDO DAS ABAS (INTEGRADO)
-function renderTabContent(cli){
-  let container = document.getElementById('tabContent');
-  let html = '';
-
-  if(db.activeTab === 'timeline') {
-    html += `<div class="section-head"><h2 class="section-title">Timeline Geral do Projeto</h2></div>`;
-    html += `<div class="timeline-container">`;
-
-    cli.etapas.forEach((et, index) => {
-      html += `
-        <div class="etapa-item ${et.status}">
-          <div class="etapa-left">
-            <div class="etapa-circle">${et.num}</div>
-            <div class="etapa-num">ETAPA</div>
-          </div>
-          <div class="etapa-center">
-            <div class="etapa-header-meta">
-              <span class="etapa-nome">${et.nome}</span>
-              <span class="etapa-pill">${et.status.toUpperCase()}</span>
-            </div>
-            <div class="etapa-desc">${et.desc}</div>
-
-            ${et.observacoes ? `
-              <div class="etapa-bloco-dados">
-                <div class="etapa-bloco-lbl">📝 Observações da Arquiteta</div>
-                <div class="etapa-bloco-txt">${et.observacoes}</div>
-              </div>
-            ` : ''}
-
-            ${et.historico ? `
-              <div class="etapa-bloco-dados">
-                <div class="etapa-bloco-lbl">⏳ Histórico & Evolução da Etapa</div>
-                <div class="etapa-bloco-txt">${et.historico}</div>
-              </div>
-            ` : ''}
-
-            ${et.registroTecnico ? `
-              <div class="etapa-bloco-dados">
-                <div class="etapa-bloco-lbl">🛠️ Registro Técnico Interno</div>
-                <div class="etapa-bloco-txt">${et.registroTecnico}</div>
-              </div>
-            ` : ''}
-
-            ${et.fluxoMobiliario ? renderComponenteFluxo(et) : ''}
-
-            <div style="margin-top:14px;">
-              <div class="etapa-bloco-lbl">📎 Arquivos Vinculados e Documentos</div>
-              ${et.anexos.length === 0 ? '<div style="font-size:12px; color:var(--mist); font-style:italic;">Nenhum anexo inserido nesta etapa.</div>' : `
-                <div class="anexos-grid">
-                  ${et.anexos.map(anexo => `
-                    <div class="anexo-file-card">
-                      <div class="anexo-info">
-                        <div class="anexo-icon">${getAnexoIcon(anexo.tipo)}</div>
-                        <div class="anexo-meta">
-                          <div class="anexo-name" title="${anexo.nome}">${anexo.nome}</div>
-                          <div class="anexo-type-badge">${anexo.tipo}</div>
-                        </div>
-                      </div>
-                      <div class="anexo-actions-row">
-                        <button class="anexo-action-btn" onclick="actionAnexo('Visualizar', '${anexo.nome}')">👁️ Ver</button>
-                        <button class="anexo-action-btn" onclick="actionAnexo('Abrir', '${anexo.nome}')">📂 Abrir</button>
-                        <button class="anexo-action-btn" onclick="actionAnexo('Baixar', '${anexo.nome}')">📥 Baixar</button>
-                      </div>
-                    </div>
-                  `).join('')}
-                </div>
-              `}
-            </div>
-
-            <div class="validacao-area">
-              <div class="etapa-bloco-lbl">✓ Status de Validação da Etapa</div>
-              <div class="validacao-status ${et.validacao.status}">
-                ${et.validacao.status === 'aprovado' ? '🟢 APROVADA PELO CLIENTE' : et.validacao.status === 'alteracao' ? '🟠 ALTERAÇÃO SOLICITADA' : '⚪ AGUARDANDO REVISÃO'}
-              </div>
-              ${et.validacao.feedback ? `<div class="validacao-feedback-text">"${et.validacao.feedback}"</div>` : ''}
-              
-              <div class="client-decision-row">
-                <button class="btn-decision approve" onclick="abrirModalValidacao('${cli.id}', ${index}, 'aprovado')">Aprovar Etapa</button>
-                <button class="btn-decision reject" onclick="abrirModalValidacao('${cli.id}', ${index}, 'alteracao')">Solicitar Ajustes</button>
-              </div>
-            </div>
-
-            ${db.currentUserMode === 'admin' ? `
-              <div class="admin-actions-container">
-                <div class="admin-actions-title">Painel de Controle Interno (Apenas Arquiteta)</div>
-                <div class="admin-input-group">
-                  <textarea id="obs-${index}" placeholder="Editar observações..." rows="2">${et.observacoes}</textarea>
-                  <textarea id="reg-${index}" placeholder="Editar registro técnico interno..." rows="2">${et.registroTecnico}</textarea>
-                </div>
-              </div>
-            ` : ''}
-
-          </div>
-        </div>
-      `;
-    });
-    html += `</div>`;
-  } else if(db.activeTab === 'pendencias') {
-    html += `
-      <div class="section-head"><h2 class="section-title">Lista de Pendências</h2></div>
-      ${cli.pendencias.map(p => `
-        <div class="pend-item ${p.done ? 'done' : ''}">
-          <div class="pend-check">${p.done ? '✓' : ''}</div>
-          <div class="pend-txt">${p.txt}</div>
-        </div>
-      `).join('')}
-    `;
-  } else if(db.activeTab === 'visitas') {
-    html += `
-      <div class="section-head"><h2 class="section-title">Próximas Visitas Técnicas</h2></div>
-      <div class="visita-card">
-        <div class="visita-lbl">Agendamento</div>
-        <div class="visita-data">${cli.visitaData}</div>
-        <div class="visita-desc">${cli.visitaDesc}</div>
-      </div>
-    `;
-  }
-  container.innerHTML = html;
-}
-
-function renderComponenteFluxo(et) {
-  return `
-    <div class="fluxo-box">
-      <div class="fluxo-title">🧱 Fluxo de Execução e Alinhamento</div>
-      <div class="fluxo-wrap">
-        <div class="fluxo-item">
-          <div class="fluxo-dot ${et.fluxoEtapa === 'alinhamento' ? 'azul' : 'verde'}">1</div>
-          <div class="fluxo-body">
-            <div class="fluxo-label">Alinhamento Inicial e Medidas</div>
-            <div class="fluxo-pill azul">Em andamento</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function getAnexoIcon(tipo) {
-  if(tipo === 'pdf') return '📄';
-  if(tipo === 'imagem') return '🖼️';
-  return '🔗';
-}
-
-function actionAnexo(acao, nome) {
-  showToast(`${acao} o arquivo: ${nome}`);
-}
-
-function copiarLinkPortal() {
-  let url = document.getElementById('linkPortal').innerText;
-  navigator.clipboard.writeText(url);
-  showToast("Link copiado com sucesso!");
-}
-
-function showToast(msg) {
-  let t = document.getElementById('toast');
-  t.innerText = msg;
-  t.classList.add('on');
-  setTimeout(() => t.classList.remove('on'), 3000);
-}
-
-function abrirModalValidacao(cliId, index, status) {
-  document.getElementById('modalValidacao').classList.remove('hidden');
-}
-
-function fecharModalValidacao() {
-  document.getElementById('modalValidacao').classList.add('hidden');
-}
-
-function confirmarValidacaoCliente() {
-  fecharModalValidacao();
-  showToast("Decisão salva com sucesso!");
-}
-
-// Inicializa o sistema ao carregar a página
-window.onload = init;
-</script>
-
-</body>
-</html>
