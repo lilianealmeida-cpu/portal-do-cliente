@@ -621,11 +621,316 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
 .crow{display:flex;gap:8px;align-items:center}
 
 /* ── RESPONSIVE ── */
+/* ═══ LISTA DE CLIENTES NO CELULAR ═══ */
+.mob-lista{display:none}
+.desk-only{display:block}
+.mob-tit{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:400;margin-bottom:4px;color:var(--ink)}
+.mob-sub{font-size:14.5px;color:#6B6058;margin-bottom:20px}
+.mob-cli{
+  display:flex;align-items:center;gap:14px;background:var(--white);
+  border:1px solid var(--line);border-radius:14px;padding:16px 17px;margin-bottom:11px;
+  cursor:pointer;box-shadow:0 1px 2px rgba(26,20,16,.03),0 3px 10px rgba(26,20,16,.04);
+}
+.mob-cli:active{border-color:var(--brick)}
+.mob-cli-av{
+  width:46px;height:46px;border-radius:50%;background:var(--brick);color:var(--white);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;
+}
+.mob-cli-info{flex:1;min-width:0}
+.mob-cli-nome{font-size:16.5px;font-weight:600;color:var(--ink);line-height:1.3}
+.mob-cli-obra{font-size:14px;color:#6B6058;margin-top:2px}
+.mob-cli-badge{
+  font-size:11.5px;letter-spacing:.4px;padding:4px 11px;border-radius:100px;
+  background:var(--brick-pale);color:var(--brick-deep);border:1px solid #E8BCA8;
+  white-space:nowrap;flex:none;
+}
+.mob-add{
+  width:100%;padding:15px;border:1.5px dashed var(--line2);background:none;
+  border-radius:13px;color:#6B6058;font-family:'DM Sans',sans-serif;
+  font-size:15px;cursor:pointer;margin-top:6px;
+}
+
 @media(max-width:720px){
   .sidebar{display:none}
+  .mob-lista{display:block}
+  .desk-only{display:none}
   .admin-wrap{flex-direction:column}
   .main{padding:16px}
   .pub-hero{padding:24px 20px}
+}
+
+/* ═══════ LEGIBILIDADE ═══════ */
+body{font-size:16px;line-height:1.55}
+.tab{font-size:14px;letter-spacing:.3px;padding:13px 15px;text-transform:none;font-weight:500}
+.arq-titulo{font-size:16px}.arq-texto{font-size:15px;line-height:1.7;color:#332822}
+.arq-data{font-size:13px}.badge{font-size:11px;letter-spacing:.5px;padding:4px 11px}
+.pend-txt{font-size:15px;color:#332822}.pend-meta{font-size:13px}
+.cli-dado{font-size:14px}.cli-nome{font-size:15px}.cli-obra{font-size:13px}
+.cli-obra-lg{font-size:14px;letter-spacing:.6px;text-transform:none;font-weight:500}
+.hdr-sub{font-size:12px;letter-spacing:1.1px}.sidebar-label{font-size:12px;letter-spacing:1.1px}
+.section-title{font-size:23px}.btn-sm{font-size:14px;padding:9px 16px}
+.btn-copy{font-size:13px;padding:10px 18px}.link-url{font-size:13px}
+.empty-txt{font-size:17px}.empty-sub{font-size:15px}
+
+/* ═══════ ÁREA DO CLIENTE — MOBILE FIRST ═══════ */
+#vPub{padding-bottom:96px;background:var(--stone)}
+
+.cli-topo{
+  background:var(--white);border-bottom:1px solid var(--line);
+  padding:26px 20px 22px;text-align:center;
+}
+.cli-mono{
+  width:54px;height:54px;margin:0 auto 14px;border-radius:50%;
+  background:var(--ink);color:var(--white);display:flex;
+  align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:24px;letter-spacing:1px;
+}
+.cli-ola{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400;line-height:1.15;color:var(--ink)}
+.cli-end{font-size:13.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--brick);margin-top:7px;font-weight:500}
+.cli-assin{font-size:13px;color:#6B6058;margin-top:12px;font-style:italic}
+
+.pv{padding:22px 18px;max-width:720px;margin:0 auto}
+.pv.hidden{display:none}
+
+.pv-tit{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;margin-bottom:6px;color:var(--ink)}
+.pv-intro{font-size:15px;color:#4A4038;line-height:1.65;margin-bottom:22px}
+.pv-rot{font-size:12.5px;letter-spacing:1.1px;text-transform:uppercase;color:var(--brick);font-weight:600;margin:28px 0 12px}
+.pv-rot:first-child{margin-top:0}
+
+/* cards de resumo (Início) */
+.res-card{
+  background:var(--white);border:1px solid var(--line);border-radius:14px;
+  padding:18px 20px;margin-bottom:12px;display:flex;align-items:flex-start;gap:14px;
+}
+.res-ico{font-size:20px;line-height:1;margin-top:2px;flex:none;opacity:.85}
+.res-rot{font-size:12.5px;letter-spacing:.9px;text-transform:uppercase;color:#6B6058;font-weight:600;margin-bottom:4px}
+.res-val{font-size:18px;font-weight:500;line-height:1.3;color:var(--ink)}
+.res-sub{font-size:14px;color:#5A5048;margin-top:3px}
+
+/* links / anexos */
+.pl-item{
+  display:flex;align-items:center;gap:12px;background:var(--white);
+  border:1px solid var(--line);border-radius:12px;padding:15px 17px;
+  margin-bottom:10px;text-decoration:none;color:var(--ink);
+}
+.pl-item:active{background:var(--stone2)}
+.pl-ico{font-size:17px;flex:none;opacity:.7}
+.pl-nome{flex:1;font-size:15.5px;font-weight:500;line-height:1.35}
+.pl-abrir{font-size:12px;color:var(--brick);border:1px solid var(--brick);border-radius:100px;padding:5px 13px;white-space:nowrap;flex:none}
+
+/* etapas */
+.et{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:18px 19px;margin-bottom:12px}
+.et.concluida{border-left:3px solid #3A6B4F}
+.et.ativa{border-left:3px solid var(--brick)}
+.et-top{display:flex;align-items:flex-start;gap:12px}
+.et-cir{
+  width:30px;height:30px;border-radius:50%;flex:none;display:flex;
+  align-items:center;justify-content:center;font-size:14px;
+  background:var(--stone2);color:#6B6058;border:1px solid var(--line);
+}
+.et.concluida .et-cir{background:#3A6B4F;color:#fff;border-color:#3A6B4F}
+.et.ativa .et-cir{background:var(--brick);color:#fff;border-color:var(--brick)}
+.et-nome{font-size:16px;font-weight:600;line-height:1.35;color:var(--ink)}
+.et-pill{display:inline-block;font-size:11.5px;letter-spacing:.5px;padding:3px 11px;border-radius:100px;background:var(--stone2);color:#6B6058;margin-top:6px}
+.et.concluida .et-pill{background:#E7F0E9;color:#2C5540}
+.et.ativa .et-pill{background:var(--brick-pale);color:var(--brick-deep)}
+.et-obs{font-size:14.5px;color:#4A4038;line-height:1.7;background:var(--stone);border-left:2px solid var(--brick);padding:11px 13px;margin-top:11px;border-radius:0 8px 8px 0}
+.et-datas{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px solid var(--stone2)}
+.et-data-rot{font-size:11.5px;letter-spacing:.7px;text-transform:uppercase;color:#7A6F65;font-weight:600}
+.et-data-val{font-size:15px;font-weight:500;color:var(--ink);margin-top:2px}
+
+/* confirmação de alteração */
+.et-alt{background:#FDF8F4;border:1px solid #E8D5C6;border-radius:11px;padding:16px 17px;margin-top:13px}
+.et-alt-perg{font-size:15px;font-weight:600;line-height:1.5;color:var(--ink);margin-bottom:11px}
+.et-alt-desc{font-size:14.5px;color:#4A4038;line-height:1.65;margin-bottom:13px;white-space:pre-wrap}
+.et-op{
+  display:flex;align-items:flex-start;gap:11px;background:var(--white);
+  border:1px solid var(--line);border-radius:10px;padding:14px 15px;
+  margin-bottom:9px;cursor:pointer;font-size:14.5px;line-height:1.55;color:#3D342C;
+}
+.et-op:active{border-color:var(--brick)}
+.et-op.escolhida{border-color:var(--brick);background:var(--brick-pale)}
+.et-op b{display:block;font-size:15.5px;color:var(--ink);margin-bottom:3px}
+.et-op-mark{font-size:16px;flex:none;color:var(--brick);margin-top:1px}
+.et-fine{font-size:13px;font-style:italic;color:#6B6058;line-height:1.6;margin-top:10px}
+.et-feito{background:var(--brick-pale);border-radius:9px;padding:12px 14px;font-size:14.5px;color:#3D2E26;line-height:1.6;margin-top:11px}
+.et-feito b{display:block;font-size:12px;letter-spacing:.6px;text-transform:uppercase;color:var(--brick-deep);margin-bottom:4px}
+
+.crono-obs{font-size:13.5px;font-style:italic;color:#6B6058;line-height:1.7;margin-top:20px;padding:15px 17px;background:var(--white);border:1px solid var(--line);border-radius:12px}
+
+/* formulários do cliente */
+.fc{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:14px}
+.fc-tit{font-size:16.5px;font-weight:600;color:var(--ink);margin-bottom:5px}
+.fc-sub{font-size:14.5px;color:#5A5048;line-height:1.65;margin-bottom:16px}
+.fc-in{
+  width:100%;font-family:'DM Sans',sans-serif;font-size:16px;color:var(--ink);
+  background:var(--stone);border:1px solid var(--line);border-radius:10px;
+  padding:14px 15px;margin-bottom:11px;outline:none;
+}
+.fc-in:focus{border-color:var(--brick);background:var(--white)}
+.fc-in::placeholder{color:#9A8F85}
+textarea.fc-in{min-height:96px;resize:vertical;line-height:1.6}
+.fc-btn{
+  width:100%;background:var(--ink);color:var(--white);border:none;border-radius:11px;
+  padding:16px;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:500;cursor:pointer;
+}
+.fc-btn:active{background:var(--brick)}
+.fc-btn:disabled{opacity:.45}
+.fc-btn2{
+  width:100%;background:var(--white);color:var(--brick);border:1px solid var(--brick);
+  border-radius:11px;padding:15px;font-family:'DM Sans',sans-serif;font-size:15.5px;
+  font-weight:500;cursor:pointer;margin-top:4px;
+}
+.fc-fine{font-size:13px;font-style:italic;color:#6B6058;line-height:1.6;margin-top:11px}
+
+/* itens salvos */
+.iv{background:var(--white);border:1px solid var(--line);border-radius:13px;padding:16px 18px;margin-bottom:11px}
+.iv-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.iv-nome{font-size:15.5px;font-weight:600;color:var(--ink)}
+.iv-data{font-size:12.5px;color:#7A6F65}
+.iv-pill{font-size:11.5px;letter-spacing:.4px;padding:4px 12px;border-radius:100px;white-space:nowrap}
+.iv-pill.aberto{background:var(--stone2);color:#6B6058;border:1px solid var(--line2)}
+.iv-pill.ok{background:#E7F0E9;color:#2C5540;border:1px solid #C4DACB}
+.iv-txt{font-size:14.5px;color:#4A4038;line-height:1.65;white-space:pre-wrap}
+.iv-tel{font-size:15px;color:var(--brick);font-weight:500;text-decoration:none}
+.iv-resp{background:var(--brick-pale);border-radius:9px;padding:13px 15px;margin-top:11px;font-size:14.5px;color:#3D2E26;line-height:1.65;white-space:pre-wrap}
+.iv-resp b{display:block;font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:var(--brick-deep);margin-bottom:5px}
+.iv-link{display:inline-block;font-size:14px;color:var(--brick);margin-top:8px;text-decoration:none;font-weight:500}
+
+/* menu inferior */
+.nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:60;
+  background:rgba(255,255,255,.97);backdrop-filter:blur(12px);
+  border-top:1px solid var(--line);display:flex;
+  padding:8px 0 max(10px,env(safe-area-inset-bottom));
+}
+.nav-b{
+  flex:1;background:none;border:none;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  padding:6px 4px;font-family:'DM Sans',sans-serif;
+  font-size:11.5px;font-weight:500;color:#8A7F74;letter-spacing:.2px;
+}
+.nav-b svg{width:23px;height:23px;stroke:#8A7F74;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.nav-b.on{color:var(--brick)}
+.nav-b.on svg{stroke:var(--brick)}
+
+.pub-vazio{text-align:center;padding:44px 20px;color:#8A7F74}
+.pub-vazio-ico{font-size:30px;opacity:.35;margin-bottom:10px}
+.pub-vazio-txt{font-size:16px;color:#6B6058}
+.pub-vazio-sub{font-size:14px;margin-top:5px}
+
+@media(min-width:721px){
+  .cli-ola{font-size:40px}
+  .pv{padding:30px 24px}
+}
+
+
+/* ═══ ADMIN — campos novos ═══ */
+.ad-box{background:var(--stone);border:1px solid var(--line);border-radius:10px;padding:14px 15px;margin-top:10px}
+.ad-rot{font-size:12px;letter-spacing:.7px;text-transform:uppercase;color:#7A6F65;font-weight:600;margin-bottom:8px}
+.ad-row{display:flex;gap:9px;flex-wrap:wrap}
+.ad-row>div{flex:1;min-width:130px}
+.ad-in{width:100%;font-family:'DM Sans',sans-serif;font-size:14.5px;color:var(--ink);
+  background:var(--white);border:1px solid var(--line);border-radius:8px;padding:10px 12px;outline:none}
+.ad-in:focus{border-color:var(--brick)}
+.ad-in::placeholder{color:#A89E94}
+textarea.ad-in{min-height:70px;resize:vertical;line-height:1.6;margin-bottom:9px}
+.ad-resp{background:#E7F0E9;border:1px solid #C4DACB;border-radius:8px;padding:11px 13px;
+  font-size:14px;color:#2C5540;line-height:1.6;margin-top:9px}
+.ad-resp b{display:block;font-size:11.5px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px}
+.ad-card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:17px 19px;margin-bottom:12px}
+.ad-card-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.ad-card-nome{font-size:15.5px;font-weight:600;color:var(--ink)}
+.ad-pill{font-size:11.5px;letter-spacing:.4px;padding:4px 12px;border-radius:100px;white-space:nowrap}
+.ad-pill.aberto{background:var(--brick-pale);color:var(--brick-deep);border:1px solid #E8BCA8}
+.ad-pill.ok{background:#E7F0E9;color:#2C5540;border:1px solid #C4DACB}
+.ad-card-txt{font-size:14.5px;color:#4A4038;line-height:1.65;white-space:pre-wrap}
+.ad-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+
+/* ═══ RESUMO FIXO NO TOPO ═══ */
+.res-faixa{background:var(--white);border-bottom:1px solid var(--line);padding:0 16px 18px}
+.res-faixa .res-card{margin-bottom:9px}
+.res-faixa .res-card:last-child{margin-bottom:0}
+@media(min-width:721px){
+  .res-faixa{display:flex;gap:12px;max-width:960px;margin:0 auto;padding:0 24px 22px}
+  .res-faixa .res-card{flex:1;margin-bottom:0}
+}
+
+/* ═══ AGENDA ═══ */
+.ag-item{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:19px 20px;margin-bottom:12px}
+.ag-item.realizado{opacity:.82}
+.ag-item.cancelado{opacity:.6}
+.ag-cab{display:flex;justify-content:space-between;align-items:flex-start;gap:11px;flex-wrap:wrap;margin-bottom:10px}
+.ag-tipo{font-size:12px;letter-spacing:.9px;text-transform:uppercase;color:var(--brick);font-weight:600}
+.ag-obj{font-size:17px;font-weight:600;color:var(--ink);line-height:1.35;margin-top:4px}
+.ag-st{font-size:11.5px;letter-spacing:.4px;padding:5px 13px;border-radius:100px;white-space:nowrap;flex:none}
+.ag-st.agendado{background:var(--brick-pale);color:var(--brick-deep);border:1px solid #E8BCA8}
+.ag-st.confirmado{background:#E4EDF5;color:#1E3E6E;border:1px solid #C3D6E8}
+.ag-st.realizado{background:#E7F0E9;color:#2C5540;border:1px solid #C4DACB}
+.ag-st.remarcado{background:#FAF0DC;color:#7A5828;border:1px solid #E8D8B4}
+.ag-st.cancelado{background:var(--stone2);color:#6B6058;border:1px solid var(--line2)}
+.ag-quando{display:flex;align-items:center;gap:9px;font-size:16px;font-weight:500;color:var(--ink);margin-bottom:9px}
+.ag-quando span{opacity:.6;font-size:15px}
+.ag-onde{display:flex;align-items:flex-start;gap:9px;font-size:14.5px;color:#4A4038;line-height:1.6;margin-bottom:9px}
+.ag-onde a{color:var(--brick);text-decoration:none;font-weight:500;word-break:break-all}
+.ag-sec{margin-top:13px;padding-top:13px;border-top:1px solid var(--stone2)}
+.ag-sec-rot{font-size:11.5px;letter-spacing:.8px;text-transform:uppercase;color:#7A6F65;font-weight:600;margin-bottom:6px}
+.ag-sec-txt{font-size:14.5px;color:#4A4038;line-height:1.7;white-space:pre-wrap}
+.ag-orient{background:var(--brick-pale);border-radius:9px;padding:13px 15px;margin-top:13px;font-size:14.5px;color:#3D2E26;line-height:1.7;white-space:pre-wrap}
+.ag-orient b{display:block;font-size:11.5px;letter-spacing:.6px;text-transform:uppercase;color:var(--brick-deep);margin-bottom:5px}
+.ag-prox{display:flex;align-items:center;gap:9px;background:var(--stone);border-radius:9px;padding:12px 14px;margin-top:11px;font-size:14.5px;color:#3D342C;line-height:1.5}
+.ag-prox b{color:var(--ink);font-weight:600}
+.ag-grupo{font-size:12.5px;letter-spacing:1.1px;text-transform:uppercase;color:#7A6F65;font-weight:600;margin:26px 0 12px}
+.ag-grupo:first-child{margin-top:0}
+
+/* ═══ CABEÇALHO DISCRETO ═══ */
+.top-marca{
+  background:var(--white);padding:16px 20px 0;text-align:center;
+}
+.top-marca-t{font-size:11.5px;letter-spacing:2.2px;text-transform:uppercase;color:#A2988D;font-weight:500}
+.top-marca-s{font-size:12px;letter-spacing:.6px;color:#8A8078;margin-top:3px}
+
+/* ═══ BOAS-VINDAS ═══ */
+.cli-boas{
+  font-size:14.5px;color:#5A5048;line-height:1.7;
+  max-width:460px;margin:14px auto 0;
+}
+
+/* ═══ PROFUNDIDADE ═══ */
+.res-card{box-shadow:0 1px 2px rgba(26,20,16,.04),0 4px 14px rgba(26,20,16,.05)}
+.et,.fc,.iv,.ag-item,.pl-item{box-shadow:0 1px 2px rgba(26,20,16,.03),0 3px 10px rgba(26,20,16,.04)}
+.cli-topo{box-shadow:0 1px 0 rgba(26,20,16,.05)}
+.cli-mono{box-shadow:0 4px 14px rgba(26,20,16,.18)}
+.nav{box-shadow:0 -2px 16px rgba(26,20,16,.06)}
+
+/* ═══ CONTADORES ═══ */
+.cnt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:6px}
+.cnt{
+  background:var(--white);border:1px solid var(--line);border-radius:13px;
+  padding:16px 14px;text-align:center;cursor:pointer;
+  box-shadow:0 1px 2px rgba(26,20,16,.03),0 3px 10px rgba(26,20,16,.04);
+}
+.cnt:active{border-color:var(--brick)}
+.cnt-ico{font-size:19px;opacity:.75;margin-bottom:6px}
+.cnt-num{font-family:'Cormorant Garamond',serif;font-size:29px;font-weight:500;color:var(--ink);line-height:1}
+.cnt-rot{font-size:12px;letter-spacing:.5px;color:#7A6F65;margin-top:5px;font-weight:500}
+
+/* ═══ BARRA DE PROGRESSO ═══ */
+.prog-wrap{background:var(--white);border:1px solid var(--line);border-radius:13px;padding:17px 19px;margin-bottom:12px;
+  box-shadow:0 1px 2px rgba(26,20,16,.03),0 3px 10px rgba(26,20,16,.04)}
+.prog-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.prog-rot{font-size:12.5px;letter-spacing:.9px;text-transform:uppercase;color:#6B6058;font-weight:600}
+.prog-pct{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;color:var(--brick);line-height:1}
+.prog-bar{height:9px;background:var(--stone2);border-radius:100px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--brick),#D66638);border-radius:100px;transition:width .5s ease}
+.prog-sub{font-size:13.5px;color:#7A6F65;margin-top:9px}
+
+/* ═══ ÚLTIMA ATUALIZAÇÃO ═══ */
+.upd{font-size:12.5px;color:#9A9086;text-align:center;padding:6px 0 0}
+
+@media(min-width:721px){
+  .cnt-grid{grid-template-columns:repeat(4,1fr)}
 }
 </style>
 </head>
@@ -681,35 +986,57 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone);color:var(--ink);m
 
 <!-- PÚBLICO -->
 <div id="vPub" class="hidden">
-  <div class="pub-hdr">
-    <div class="pub-logo">L<span>A</span></div>
-    <div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4)">Portal do Cliente</div>
+  <div class="top-marca">
+    <div class="top-marca-t">Portal do Cliente</div>
+    <div class="top-marca-s">Liliane Almeida Arquitetura</div>
   </div>
-  <div class="pub-wrap">
-    <div class="pub-hero">
-      <div class="pub-monogram">LA</div>
-      <div class="pub-greet" id="pGreet">Bem-vindo</div>
-      <div class="pub-proj" id="pProj"></div>
-      <div id="pDados"></div>
-      <hr class="pub-div"/>
-      <div class="pub-sig">Arquiteta Liliane Almeida</div>
-      <div class="pub-sig2">Acompanhe seu projeto</div>
-    </div>
-    <div class="tabs">
-      <button class="tab on" id="pt0" onclick="pubTab(0)">Documentos</button>
-      <button class="tab" id="pt1" onclick="pubTab(1)">Alinhamentos</button>
-      <button class="tab" id="pt2" onclick="pubTab(2)">Cronograma</button>
-      <button class="tab" id="pt3" onclick="pubTab(3)">Visita</button>
-      <button class="tab" id="pt4" onclick="pubTab(4)">Links</button>
-      <button class="tab" id="pt5" onclick="pubTab(5)">Projetos</button>
-    </div>
-    <div id="ptc0"><span style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--brick);margin-bottom:16px;display:block" id="pCount">Documentos (0)</span><div class="empty hidden" id="pEmpty"><div class="empty-icon">📄</div><div class="empty-txt">Nenhum documento</div><div class="empty-sub">Em breve.</div></div><div id="pList"></div></div>
-    <div id="ptc1" class="hidden"><div class="empty hidden" id="pPendEmpty"><div class="empty-icon">✓</div><div class="empty-txt">Sem alinhamentos pendentes</div></div><div id="pPendList"></div></div>
-    <div id="ptc2" class="hidden"><div id="pEtapaList"></div></div>
-    <div id="ptc3" class="hidden"><div id="pVisitaView"></div></div>
-    <div id="ptc4" class="hidden"><div class="empty hidden" id="pLinkEmpty"><div class="empty-icon">🔗</div><div class="empty-txt">Nenhum link</div></div><div id="pLinkList"></div></div>
-    <div id="ptc5" class="hidden"><div id="cEntregasPub"></div></div>
+  <div class="cli-topo">
+    <div class="cli-mono">LA</div>
+    <div class="cli-ola" id="pGreet">Bem-vindo</div>
+    <div class="cli-end" id="pProj"></div>
+    <p class="cli-boas" id="pBoas"></p>
+    <div class="cli-assin">Arquiteta Liliane Almeida</div>
   </div>
+
+  <div class="res-faixa" id="pResumo"></div>
+  <div style="padding:0 16px 4px;max-width:960px;margin:0 auto" id="pPainel"></div>
+
+  <!-- PROJETOS -->
+  <div class="pv" id="pv0">
+    <div class="pv-tit">Projetos / Links úteis</div>
+    <p class="pv-intro">Projetos e serviços de arquitetura, anexados a cada etapa concluída — acompanhe pelo cronograma.</p>
+    <div id="pProjetos"></div>
+    <div id="cEntregasPub" style="margin-top:30px"></div>
+    <div class="pv-rot" style="margin-top:34px">Cronograma — etapas</div>
+    <div id="pEtapaList"></div>
+    <div class="crono-obs">
+      Não gerencio obra. Esta etapa independe do andamento da obra.<br>
+      Toda alteração no que já foi entregue — em obra, por fornecedor ou por pedido durante a produção — exige nova avaliação técnica antes de seguir.
+    </div>
+  </div>
+
+  <!-- AGENDA -->
+  <div class="pv hidden" id="pv1">
+    <div class="pv-tit">Agenda do projeto</div>
+    <p class="pv-intro">Reuniões, visitas técnicas, apresentações e entregas — tudo do seu projeto reunido aqui.</p>
+    <div id="pAgenda"></div>
+  </div>
+
+  <!-- DÚVIDAS / CONTATO -->
+  <div class="pv hidden" id="pv2">
+    <div class="pv-tit">Dúvidas / Contato</div>
+    <p class="pv-intro">Atendimento de segunda a sexta, das 9h às 18h.</p>
+    <div id="pContato"></div>
+  </div>
+
+  <nav class="nav">
+    <button class="nav-b on" id="nv0" onclick="pubVer(0)">
+      <svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Projetos</button>
+    <button class="nav-b" id="nv1" onclick="pubVer(1)">
+      <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Agenda</button>
+    <button class="nav-b" id="nv2" onclick="pubVer(2)">
+      <svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.3-.6L3 21l1.8-5.2A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4z"/></svg>Dúvidas</button>
+  </nav>
 </div>
 
 <!-- MODAL -->
@@ -777,7 +1104,23 @@ function show(id){['vLoading','vLogin','vAdmin','vPub'].forEach(v=>{const e=el(v
 const BURL=()=>`https://api.jsonbin.io/v3/b/${cfg.binId}`;
 const HDR=()=>({'Content-Type':'application/json','X-Master-Key':cfg.apiKey,'X-Bin-Versioning':'false'});
 async function load(){try{const r=await fetch(BURL(),{headers:HDR()});const j=await r.json();data=j.record||{clientes:[]};if(!data.clientes)data.clientes=[];}catch{data={clientes:[]};}}
-async function save(){await fetch(BURL(),{method:'PUT',headers:HDR(),body:JSON.stringify(data)})}
+async function save(){
+  try{
+    const _c=cli(); if(_c)_c.atualizadoEm=new Date().toISOString();
+    const r=await fetch(BURL()+'?meta=false',{headers:HDR()});
+    const rem=await r.json();
+    const base=(rem&&rem.clientes)?rem:{clientes:[]};
+    (data.clientes||[]).forEach(loc=>{
+      const i=base.clientes.findIndex(c=>c.id===loc.id);
+      if(i===-1)base.clientes.push(loc);else base.clientes[i]=loc;
+    });
+    Object.keys(data).forEach(k=>{if(k!=='clientes')base[k]=data[k]});
+    await fetch(BURL(),{method:'PUT',headers:HDR(),body:JSON.stringify(base)});
+    data=base;
+  }catch(e){
+    await fetch(BURL(),{method:'PUT',headers:HDR(),body:JSON.stringify(data)});
+  }
+}
 /* Patch cirúrgico — atualiza apenas o cliente específico sem risco de sobrescrever outros dados */
 async function patchCliente(clienteId, campos){
   const r=await fetch(BURL()+'?meta=false',{headers:HDR()});
@@ -812,7 +1155,7 @@ async function login(){
   const s=el('lSenha').value;
   if(s!==cfg.senha){el('lErr').classList.add('on');return;}
   el('lErr').classList.remove('on');
-  show('vAdmin');renderSidebar();
+  show('vAdmin');renderSidebar();voltarLista();
 }
 function logout(){show('vLogin');el('lSenha').value='';}
 
@@ -826,6 +1169,37 @@ function renderSidebar(){
         <div class="cli-obra">${esc(c.obra||'')}</div>
       </div>
     </div>`).join('');
+  renderMobLista();
+}
+
+function renderMobLista(){
+  const alvo=el('mobLista'); if(!alvo)return;
+  const cl=data?.clientes||[];
+  if(!cl.length){
+    alvo.innerHTML='<div class="mob-tit">Clientes</div><div class="empty"><div class="empty-icon">◇</div><div class="empty-txt">Nenhum cliente</div></div><button class="mob-add" onclick="goNovoCliente()">+ Novo cliente</button>';
+    return;
+  }
+  alvo.innerHTML='<div class="mob-tit">Clientes</div><div class="mob-sub">'+cl.length+' '+(cl.length===1?'projeto ativo':'projetos ativos')+'</div>'
+    + cl.map(c=>{
+        const pend=((c.duvidas||[]).filter(d=>!d.resposta).length)
+                 + ((c.contatos||[]).filter(t=>!t.resposta).length);
+        return `<div class="mob-cli" onclick="openCli('${c.id}')">
+          <div class="mob-cli-av">${esc(ini(c.nome))}</div>
+          <div class="mob-cli-info">
+            <div class="mob-cli-nome">${esc(c.nome)}</div>
+            <div class="mob-cli-obra">${esc(c.obra||'Sem obra definida')}</div>
+          </div>
+          ${pend?`<span class="mob-cli-badge">${pend}</span>`:''}
+        </div>`;
+      }).join('')
+    + '<button class="mob-add" onclick="goNovoCliente()">+ Novo cliente</button>';
+}
+
+function voltarLista(){
+  cliId=null; renderSidebar();
+  el('mainArea').innerHTML='<div id="mobLista" class="mob-lista"></div>'
+    + '<div class="empty desk-only"><div class="empty-icon">👈</div><div class="empty-txt">Selecione um cliente</div></div>';
+  renderMobLista();
 }
 
 function openCli(id){
@@ -844,7 +1218,7 @@ function renderClienteAdmin(){
 
   el('mainArea').innerHTML=`
     <div class="topbar">
-      <button class="bback" onclick="cliId=null;renderSidebar();el('mainArea').innerHTML='<div class=\\'empty\\'><div class=\\'empty-icon\\'>👈</div><div class=\\'empty-txt\\'>Selecione um cliente</div></div>'">← Clientes</button>
+      <button class="bback" onclick="voltarLista()">← Clientes</button>
       <div class="crow">
         <button class="btn-sm" onclick="goNovoArq()">+ Arquivo</button>
         <button class="btn-sm danger" onclick="confirmDelCli()">Excluir</button>
@@ -873,25 +1247,27 @@ function renderClienteAdmin(){
       <button class="tab on" id="t0" onclick="tab(0)">Arquivos</button>
       <button class="tab" id="t1" onclick="tab(1)">Alinhamentos</button>
       <button class="tab" id="t2" onclick="tab(2)">Cronograma</button>
-      <button class="tab" id="t3" onclick="tab(3)">Visita</button>
+      <button class="tab" id="t3" onclick="tab(3)">Agenda</button>
       <button class="tab" id="t4" onclick="tab(4)">Links</button>
       <button class="tab" id="t5" onclick="tab(5)">Projetos</button>
       <button class="tab" id="t6" onclick="tab(6)">Briefing</button>
+      <button class="tab" id="t7" onclick="tab(7)">Dúvidas / Contato</button>
     </div>
     <div id="tc0">${renderArqsHTML(c)}</div>
     <div id="tc1" class="hidden">${renderPendHTML(c)}</div>
     <div id="tc2" class="hidden">${renderEtapasHTML(c)}</div>
-    <div id="tc3" class="hidden">${renderVisitaHTML(c)}</div>
+    <div id="tc3" class="hidden">${renderAgendaHTML(c)}</div>
     <div id="tc4" class="hidden">${renderLinksHTML(c)}</div>
     <div id="tc5" class="hidden"><div id="cEntregasAdmin"></div></div>
     <div id="tc6" class="hidden">${renderBriefingHTML(c)}</div>
+    <div id="tc7" class="hidden">${renderDuvidasHTML(c)}</div>
   `;
   renderEntregas('admin');
 }
 
 function tab(n){
   abaAtiva=n;
-  for(let i=0;i<7;i++){el('t'+i)?.classList.toggle('on',i===n);el('tc'+i)?.classList.toggle('hidden',i!==n);}
+  for(let i=0;i<8;i++){el('t'+i)?.classList.toggle('on',i===n);el('tc'+i)?.classList.toggle('hidden',i!==n);}
 }
 
 function renderBriefingHTML(c){
@@ -1082,7 +1458,7 @@ async function setFluxoMob(cid, eid, campo, valor){
   // Re-renderizar conforme o modo (admin ou visão pública do cliente)
   if(!el('vPub').classList.contains('hidden')){
     showPub(cid);
-    setTimeout(()=>pubTab(2),50);
+    setTimeout(()=>pubVer(1),60);
   } else {
     renderClienteAdmin(); tab(2);
   }
@@ -1104,6 +1480,23 @@ function renderEtapasHTML(c){
         <div class="etapa-obs-wrap">
           ${e.id==='e6' ? renderFluxoMobiliario(e, c.id) : ''}
           <textarea rows="2" placeholder="Observações..." onchange="updateEtapaObs('${e.id}',this.value)">${esc(e.obs||'')}</textarea>
+          <div class="ad-box">
+            <div class="ad-rot">Prazo e entrega — só você preenche</div>
+            <div class="ad-row">
+              <div><input class="ad-in" placeholder="Prazo previsto" value="${esc(e.prazo||'')}" onchange="setEtapaCampo('${e.id}','prazo',this.value)"></div>
+              <div><input class="ad-in" placeholder="Data de entrega" value="${esc(e.entrega||'')}" onchange="setEtapaCampo('${e.id}','entrega',this.value)"></div>
+            </div>
+          </div>
+          <div class="ad-box">
+            <div class="ad-rot">Alteração desta etapa — aparece para o cliente confirmar</div>
+            <textarea class="ad-in" placeholder="Descreva a alteração / solução técnica. Deixe vazio para não exibir nada ao cliente." onchange="setAltDesc('${e.id}',this.value)">${esc((e.alt&&e.alt.desc)||'')}</textarea>
+            ${(e.alt&&e.alt.escolha)?`<div class="ad-resp"><b>✓ Cliente respondeu — ${fmt(e.alt.em)}</b>${e.alt.escolha==='seguir'?'Seguir como está (mantém versão anterior para fornecedores)':'Atualizar o projeto'}</div>`:''}
+            ${(e.alt&&e.alt.escolha==='atualizar')?`<div class="ad-row" style="margin-top:9px">
+              <div><input class="ad-in" placeholder="Prazo do novo serviço" value="${esc(e.alt.prazo||'')}" onchange="setAltCampo('${e.id}','prazo',this.value)"></div>
+              <div><input class="ad-in" placeholder="Valor (R$)" value="${esc(e.alt.valor||'')}" onchange="setAltCampo('${e.id}','valor',this.value)"></div>
+            </div>`:''}
+            ${(e.alt&&e.alt.escolha)?`<div class="ad-btns"><button class="btn-sm" onclick="limparAlt('${e.id}')">Limpar resposta</button></div>`:''}
+          </div>
           <div class="etapa-links">${(e.links||[]).map(l=>`<div class="etapa-link-item"><a href="${esc(l.url)}" target="_blank">📎 ${esc(l.nome||l.url)}</a><button class="bicon" onclick="delEtapaLink('${e.id}','${l.id}')">✕</button></div>`).join('')}</div>
           <div class="etapa-link-row">
             <input type="text" id="ln-${e.id}" placeholder="Nome do arquivo"/>
@@ -1308,47 +1701,583 @@ async function deleteEntItem(lista,id){const ent=getEnt();ent[lista]=ent[lista].
 async function addEntItem(lista){const ent=getEnt();ent[lista].push({id:'e'+(entNextId++),nome:'Novo item',obs:'',tipo:'padrao',status:'',edit:true});await save();renderEntregas('admin');}
 
 // PUB TABS
-function pubTab(n){for(let i=0;i<6;i++){el('pt'+i)?.classList.toggle('on',i===n);el('ptc'+i)?.classList.toggle('hidden',i!==n);}}
 
 // PÚBLICO
-function showPub(cid){
-  const c=(data?.clientes||[]).find(c=>c.id===cid);
-  show('vPub');
-  if(!c){el('pGreet').textContent='Projeto não encontrado';el('pProj').textContent='Link inválido.';return;}
-  const pnome=c.nome.split(' ')[0];
-  el('pGreet').textContent='Olá, '+pnome.charAt(0).toUpperCase()+pnome.slice(1).toLowerCase();
-  el('pProj').textContent=c.obra||'Seu Projeto';
-  const d=[];
-  if(c.tel)d.push(`<span style="font-size:12px;color:var(--mist)">📱 ${esc(c.tel)}</span>`);
-  if(c.email)d.push(`<span style="font-size:12px;color:var(--mist)">✉ ${esc(c.email)}</span>`);
-  el('pDados').innerHTML=d.length?`<div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:8px">${d.join('')}</div>`:'';
-
-  const arqs=c.arquivos||[];
-  el('pCount').textContent=`Documentos (${arqs.length})`;
-  const pl=el('pList'),pe=el('pEmpty');
-  if(!arqs.length){pe.classList.remove('hidden');pl.innerHTML='';}
-  else{pe.classList.add('hidden');pl.innerHTML=arqs.map(a=>{const cor=CORES[a.tipo]||'#5E5040';return`<div class="arq-card"><div class="arq-top"><div class="arq-tl"><span class="badge" style="background:${cor}18;color:${cor};border:1px solid ${cor}33">${esc(a.tipo)}</span><span class="arq-titulo">${esc(a.titulo)}</span></div><span class="arq-data">${fmt(a.criadoEm)}</span></div><div class="arq-texto">${esc(a.texto)}</div></div>`;}).join('');}
-
-  const pends=c.pendencias||[];
-  const ppl=el('pPendList'),ppe=el('pPendEmpty');
-  if(!pends.length){ppe.classList.remove('hidden');ppl.innerHTML='';}
-  else{ppe.classList.add('hidden');ppl.innerHTML=pends.map(p=>`<div class="pend-item${p.done?' done':''}"><div class="pend-check" style="cursor:default">${p.done?'✓':''}</div><div class="pend-txt">${esc(p.texto)}</div></div>`).join('');}
-
-  const etapas=c.etapas||ETAPAS_DEFAULT.map(e=>({...e}));
-  const sl={pendente:'Pendente',ativa:'Em andamento',concluida:'Concluído'};
-  el('pEtapaList').innerHTML=etapas.map(e=>`<div class="pub-etapa ${e.status}"><div class="pub-circle">${e.status==='concluida'?'✓':e.status==='ativa'?'◆':'◇'}</div><div style="flex:1"><div class="pub-etapa-nome">${esc(e.nome)}</div><span class="pub-etapa-pill">${sl[e.status]||''}</span>${e.obs?`<div style="font-size:12px;color:var(--ink2);background:var(--stone2);border-left:2px solid var(--brick);padding:8px 10px;margin-top:8px;line-height:1.7;border-radius:6px">${esc(e.obs)}</div>`:''}${(e.links||[]).length?`<div style="display:flex;flex-direction:column;gap:5px;margin-top:8px">${e.links.map(l=>`<a href="${esc(l.url)}" target="_blank" style="display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--line);padding:8px 12px;border-radius:8px;font-size:12px;color:var(--brick);text-decoration:none;font-weight:500">📎 ${esc(l.nome||l.url)} <span style="margin-left:auto;font-size:10px;border:1px solid var(--brick);padding:3px 10px;border-radius:100px">Abrir →</span></a>`).join('')}</div>`:''}${e.id==='e6'?renderFluxoMobiliario(e,c.id):''}</div></div>`).join('');
-
-  const links=c.links||[];
-  const pll=el('pLinkList'),ple=el('pLinkEmpty');
-  if(!links.length){ple.classList.remove('hidden');pll.innerHTML='';}
-  else{ple.classList.add('hidden');const cats=[...new Set(links.map(l=>l.categoria))];pll.innerHTML=cats.map(cat=>{const cor=CAT_CORES[cat]||'#6E6454';return`<div style="margin-bottom:20px"><div class="link-cat-label" style="color:${cor}">${esc(cat)}</div>${links.filter(l=>l.categoria===cat).map(l=>`<div class="link-item"><span style="font-size:13px;flex:1">${esc(l.titulo)}</span><a href="${esc(l.url)}" target="_blank" style="font-size:11px;color:var(--brick);text-decoration:none;border:1px solid var(--brick);padding:5px 12px;border-radius:100px;white-space:nowrap">Abrir →</a></div>`).join('')}</div>`;}).join('');}
-
-  const pv=el('pVisitaView');
-  if(c.visita&&c.visita.data){pv.innerHTML=`<div class="pub-visita"><div class="pub-visita-lbl">📅 Próxima Visita</div><div class="pub-visita-data">${esc(c.visita.data)}</div><div class="pub-visita-desc">${esc(c.visita.desc||'')}</div></div>`;}
-  else{pv.innerHTML=`<div class="empty"><div class="empty-icon">📅</div><div class="empty-txt">Nenhuma visita agendada</div></div>`;}
-
-  cliId=c.id;renderEntregas('pub');cliId=null;
+function pubVer(n){
+  for(let i=0;i<3;i++){
+    el('pv'+i)?.classList.toggle('hidden',i!==n);
+    el('nv'+i)?.classList.toggle('on',i===n);
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
 }
+
+let pubCli=null;
+
+async function showPub(cid){
+  const c=(data.clientes||[]).find(x=>x.id===cid);
+  if(!c){show('vLogin');return;}
+  pubCli=c;
+  show('vPub');
+  el('pGreet').textContent='Olá, '+c.nome.split(' ')[0];
+  el('pProj').textContent=c.obra||'';
+  renderPubTudo();
+}
+
+function renderPubTudo(){
+  const c=pubCli; if(!c)return;
+  renderPubResumo(c);
+  renderPubAgenda(c);
+  renderPubProjetos(c);
+  cliId=c.id; renderEntregas('pub'); cliId=null;
+  renderPubEtapas(c);
+  renderPubContato(c);
+}
+
+/* ───── INÍCIO ───── */
+function renderPubResumo(c){
+  const ets=c.etapas||[];
+  const ativa=ets.find(e=>e.status==='ativa');
+  const prox=ets.find(e=>e.status==='pendente');
+  const conc=ets.filter(e=>e.status==='concluida').length;
+  const prox1=proxAgendamento(c);
+  const pct=ets.length?Math.round(conc/ets.length*100):0;
+  const nArq=(c.arquivos||[]).filter(a=>a.link).length+(c.links||[]).length;
+  const nAg=agendaDe(c).filter(agAtivo).length;
+  const nDuv=(c.duvidas||[]).filter(d=>!d.resposta).length;
+
+  el('pBoas').textContent='Aqui você acompanha as etapas do seu projeto, acessa os arquivos digitais e vê os próximos passos.';
+
+  el('pResumo').innerHTML=`
+    <div class="res-card">
+      <div class="res-ico">◆</div>
+      <div>
+        <div class="res-rot">Status atual</div>
+        <div class="res-val">${ativa?esc(ativa.nome):(conc&&conc===ets.length?'Projeto concluído':'Em desenvolvimento')}</div>
+        ${ets.length?`<div class="res-sub">${conc} de ${ets.length} etapas concluídas</div>`:''}
+      </div>
+    </div>
+    <div class="res-card">
+      <div class="res-ico">◷</div>
+      <div>
+        <div class="res-rot">Próximo agendamento</div>
+        <div class="res-val">${prox1?esc(prox1.data)+(prox1.hora?' · '+esc(prox1.hora):''):'A definir'}</div>
+        ${prox1?`<div class="res-sub">${esc(prox1.tipo)}${prox1.objetivo?' — '+esc(prox1.objetivo):''}</div>`:''}
+      </div>
+    </div>
+    <div class="res-card">
+      <div class="res-ico">→</div>
+      <div>
+        <div class="res-rot">Próxima etapa</div>
+        <div class="res-val">${prox?esc(prox.nome):'—'}</div>
+      </div>
+    </div>`;
+
+  el('pPainel').innerHTML=`
+    ${ets.length?`<div class="prog-wrap">
+      <div class="prog-top">
+        <span class="prog-rot">Andamento do projeto</span>
+        <span class="prog-pct">${pct}%</span>
+      </div>
+      <div class="prog-bar"><div class="prog-fill" style="width:${pct}%"></div></div>
+      <div class="prog-sub">${conc} de ${ets.length} etapas concluídas</div>
+    </div>`:''}
+    <div class="cnt-grid">
+      <div class="cnt" onclick="pubVer(0)">
+        <div class="cnt-ico">📎</div>
+        <div class="cnt-num">${nArq}</div>
+        <div class="cnt-rot">Arquivos</div>
+      </div>
+      <div class="cnt" onclick="pubVer(1)">
+        <div class="cnt-ico">📅</div>
+        <div class="cnt-num">${nAg}</div>
+        <div class="cnt-rot">Agenda</div>
+      </div>
+      <div class="cnt" onclick="pubVer(0)">
+        <div class="cnt-ico">◈</div>
+        <div class="cnt-num">${ets.length}</div>
+        <div class="cnt-rot">Etapas</div>
+      </div>
+      <div class="cnt" onclick="pubVer(2)">
+        <div class="cnt-ico">💬</div>
+        <div class="cnt-num">${nDuv}</div>
+        <div class="cnt-rot">Em aberto</div>
+      </div>
+    </div>
+    ${c.atualizadoEm?`<div class="upd">Última atualização · ${fmt(c.atualizadoEm)}</div>`:''}`;
+}
+
+/* ───── PROJETOS ───── */
+function renderPubProjetos(c){
+  let h='';
+  const arqs=(c.arquivos||[]).filter(a=>a.link);
+  const lks=c.links||[];
+  if(arqs.length){
+    h+='<div class="pv-rot">Projetos concluídos</div>';
+    h+=arqs.map(a=>`<a class="pl-item" href="${esc(a.link)}" target="_blank"><span class="pl-ico">📎</span><span class="pl-nome">${esc(a.titulo||a.nome||'Arquivo')}</span><span class="pl-abrir">Abrir</span></a>`).join('');
+  }
+  if(lks.length){
+    h+='<div class="pv-rot">Links úteis</div>';
+    h+=lks.map(l=>`<a class="pl-item" href="${esc(l.url)}" target="_blank"><span class="pl-ico">🔗</span><span class="pl-nome">${esc(l.nome||l.url)}</span><span class="pl-abrir">Abrir</span></a>`).join('');
+  }
+  if(!h)h='<div class="pub-vazio"><div class="pub-vazio-ico">◇</div><div class="pub-vazio-txt">Nada anexado ainda</div><div class="pub-vazio-sub">Os arquivos aparecem conforme as etapas são concluídas.</div></div>';
+  el('pProjetos').innerHTML=h;
+}
+
+function renderPubEtapas(c){
+  const ets=c.etapas||[];
+  if(!ets.length){el('pEtapaList').innerHTML='<div class="pub-vazio"><div class="pub-vazio-txt">Cronograma em breve</div></div>';return;}
+  const rot={pendente:'Pendente',ativa:'Em andamento',concluida:'Concluída'};
+  el('pEtapaList').innerHTML=ets.map(e=>{
+    const alt=e.alt||{};
+    let bloco='';
+    if(alt.desc){
+      if(alt.escolha){
+        const txt=alt.escolha==='seguir'
+          ? 'Seguir como está — projetos seguintes mantêm a versão anterior, e é essa a versão que segue para fornecedores e serviços.'
+          : 'Atualizar o projeto — reviso listagens, soluções e contatos.';
+        bloco=`<div class="et-alt">
+          <div class="et-alt-desc">${esc(alt.desc)}</div>
+          <div class="et-feito"><b>✓ Sua resposta</b>${txt}</div>
+          ${(alt.escolha==='atualizar'&&(alt.prazo||alt.valor))?`<div class="et-datas">${alt.prazo?`<div><div class="et-data-rot">Prazo</div><div class="et-data-val">${esc(alt.prazo)}</div></div>`:''}${alt.valor?`<div><div class="et-data-rot">Valor</div><div class="et-data-val">${esc(alt.valor)}</div></div>`:''}</div>`:''}
+        </div>`;
+      }else{
+        bloco=`<div class="et-alt">
+          <div class="et-alt-perg">Houve alguma alteração da etapa anterior (durante ou pós-obra)?</div>
+          <div class="et-alt-desc">${esc(alt.desc)}</div>
+          <div class="et-op" onclick="responderAlt('${e.id}','seguir')"><span class="et-op-mark">○</span><span><b>Seguir como está</b>Ciente de que os projetos seguintes mantêm a versão anterior, e é essa a versão que segue para fornecedores e serviços.</span></div>
+          <div class="et-op" onclick="responderAlt('${e.id}','atualizar')"><span class="et-op-mark">○</span><span><b>Atualizar o projeto</b>Reviso listagens, soluções e contatos. Novo serviço: prazo e valor informados à parte.</span></div>
+          <div class="et-fine">Atualizar exige refazer o que já estava concluído — por isso entra como novo serviço, com prazo próprio.</div>
+        </div>`;
+      }
+    }
+    const datas=(e.prazo||e.entrega)?`<div class="et-datas">
+      ${e.prazo?`<div><div class="et-data-rot">Prazo previsto</div><div class="et-data-val">${esc(e.prazo)}</div></div>`:''}
+      ${e.entrega?`<div><div class="et-data-rot">Data de entrega</div><div class="et-data-val">${esc(e.entrega)}</div></div>`:''}
+    </div>`:'';
+    const lks=(e.links||[]).length?`<div style="margin-top:11px">${e.links.map(l=>`<a class="pl-item" href="${esc(l.url)}" target="_blank"><span class="pl-ico">📎</span><span class="pl-nome">${esc(l.nome||l.url)}</span><span class="pl-abrir">Abrir</span></a>`).join('')}</div>`:'';
+    return `<div class="et ${e.status}">
+      <div class="et-top">
+        <div class="et-cir">${e.status==='concluida'?'✓':e.status==='ativa'?'◆':'◇'}</div>
+        <div style="flex:1">
+          <div class="et-nome">${esc(e.nome)}</div>
+          <span class="et-pill">${rot[e.status]||''}</span>
+        </div>
+      </div>
+      ${e.obs?`<div class="et-obs">${esc(e.obs)}</div>`:''}
+      ${lks}${datas}${bloco}
+      ${e.id==='e6'?renderFluxoMobiliario(e,c.id):''}
+    </div>`;
+  }).join('');
+}
+
+async function responderAlt(eid,escolha){
+  const c=pubCli; if(!c)return;
+  const e=(c.etapas||[]).find(x=>x.id===eid); if(!e||!e.alt)return;
+  if(e.alt.escolha)return;
+  try{
+    const r=await fetch(BURL()+'?meta=false',{headers:HDR()});
+    const rec=await r.json();
+    const i=rec.clientes.findIndex(x=>x.id===c.id);
+    const et=(rec.clientes[i].etapas||[]).find(x=>x.id===eid);
+    if(!et||!et.alt)return;
+    et.alt.escolha=escolha;
+    et.alt.em=new Date().toISOString();
+    await fetch(BURL(),{method:'PUT',headers:HDR(),body:JSON.stringify(rec)});
+    data=rec; pubCli=rec.clientes[i];
+    renderPubEtapas(pubCli);
+    toast('Resposta registrada ✓');
+  }catch(err){toast('Não foi possível registrar. Tente de novo.');}
+}
+
+/* ───── DÚVIDAS / CONTATO ───── */
+function renderPubContato(c){
+  const cts=c.contatos||[];
+  const dvs=c.duvidas||[];
+  el('pContato').innerHTML=`
+    <div class="pv-rot">Fornecedor / serviço</div>
+    <div class="fc">
+      <div class="fc-tit">Retorno e contato técnico</div>
+      <div class="fc-sub">Fornecedor que precisa de retorno técnico ou do projeto. Nem sempre tenho o contato — por ligação resolvo numa conversa só.</div>
+      <input class="fc-in" id="fNome" placeholder="Nome do fornecedor / serviço">
+      <input class="fc-in" id="fTel" type="tel" placeholder="Telefone para meu retorno">
+      <input class="fc-in" id="fLink" type="url" placeholder="Link de orçamento ou foto (opcional)">
+      <textarea class="fc-in" id="fObs" placeholder="Descrição (opcional)"></textarea>
+      <button class="fc-btn" id="fBtn" onclick="enviarContato()">Enviar contato</button>
+    </div>
+    ${cts.length?`<div class="pv-rot">Contatos salvos (${cts.length})</div>`+cts.map(t=>`
+      <div class="iv">
+        <div class="iv-top">
+          <span class="iv-nome">${esc(t.nome)}</span>
+          <span class="iv-pill ${t.resposta?'ok':'aberto'}">${t.resposta?'Contato realizado':'Enviado'}</span>
+        </div>
+        ${t.tel?`<a class="iv-tel" href="tel:${esc(t.tel)}">${esc(t.tel)}</a>`:''}
+        ${t.obs?`<div class="iv-txt" style="margin-top:7px">${esc(t.obs)}</div>`:''}
+        ${t.link?`<a class="iv-link" href="${esc(t.link)}" target="_blank">Abrir anexo →</a>`:''}
+        ${t.resposta?`<div class="iv-resp"><b>💬 Arquiteta</b>${esc(t.resposta)}</div>`:''}
+        <div class="iv-data" style="margin-top:8px">${fmt(t.criadoEm)}${t.porArq?' · registrado pela arquiteta':''}</div>
+      </div>`).join(''):''}
+
+    <div class="pv-rot">Dúvida</div>
+    <div class="fc">
+      <textarea class="fc-in" id="dTxt" placeholder="Descreva sua dúvida"></textarea>
+      <input class="fc-in" id="dLink" type="url" placeholder="Link de foto ou arquivo (opcional)">
+      <button class="fc-btn" id="dBtn" onclick="enviarDuvida()">Enviar dúvida</button>
+      <button class="fc-btn2" onclick="pedirReuniao()">Solicitar reunião remota exclusiva</button>
+      <div class="fc-fine">Enviarei por mensagem ou link as datas disponíveis para agendamento, de segunda a sexta, das 9h às 18h.</div>
+    </div>
+    ${dvs.length?`<div class="pv-rot">Minhas dúvidas (${dvs.length})</div>`+dvs.map(d=>`
+      <div class="iv">
+        <div class="iv-top">
+          <span class="iv-nome">${d.tipo==='reuniao'?'Reunião remota':'Dúvida'}</span>
+          <span class="iv-pill ${d.resposta?'ok':'aberto'}">${d.resposta?'Respondida':'Enviada'}</span>
+        </div>
+        <div class="iv-txt">${esc(d.texto)}</div>
+        ${d.link?`<a class="iv-link" href="${esc(d.link)}" target="_blank">Abrir anexo →</a>`:''}
+        ${d.resposta?`<div class="iv-resp"><b>💬 Arquiteta</b>${esc(d.resposta)}${d.respLink?`<br><a class="iv-link" href="${esc(d.respLink)}" target="_blank">Abrir anexo →</a>`:''}</div>`:''}
+        <div class="iv-data" style="margin-top:8px">${fmt(d.criadoEm)}</div>
+      </div>`).join(''):''}`;
+}
+
+async function gravarPub(campo,item,btnId,limpar){
+  const c=pubCli; if(!c)return false;
+  const btn=btnId?el(btnId):null;
+  if(btn){btn.disabled=true;btn.textContent='Enviando...';}
+  try{
+    const r=await fetch(BURL()+'?meta=false',{headers:HDR()});
+    const rec=await r.json();
+    const i=rec.clientes.findIndex(x=>x.id===c.id);
+    if(i===-1)throw new Error();
+    if(!rec.clientes[i][campo])rec.clientes[i][campo]=[];
+    rec.clientes[i][campo].unshift(item);
+    await fetch(BURL(),{method:'PUT',headers:HDR(),body:JSON.stringify(rec)});
+    data=rec; pubCli=rec.clientes[i];
+    renderPubContato(pubCli);
+    toast('Enviado ✓');
+    return true;
+  }catch(e){
+    if(btn){btn.disabled=false;btn.textContent=limpar||'Enviar';}
+    toast('Não foi possível enviar. Tente de novo.');
+    return false;
+  }
+}
+
+function enviarContato(){
+  const nome=el('fNome').value.trim();
+  const tel=el('fTel').value.trim();
+  if(!nome){toast('Informe o nome do fornecedor');return;}
+  gravarPub('contatos',{
+    id:uid(),nome,tel,
+    link:el('fLink').value.trim(),
+    obs:el('fObs').value.trim(),
+    resposta:'',porArq:false,criadoEm:new Date().toISOString()
+  },'fBtn','Enviar contato');
+}
+
+function enviarDuvida(){
+  const texto=el('dTxt').value.trim();
+  if(!texto){toast('Escreva sua dúvida');return;}
+  gravarPub('duvidas',{
+    id:uid(),tipo:'duvida',texto,
+    link:el('dLink').value.trim(),
+    resposta:'',respLink:'',criadoEm:new Date().toISOString()
+  },'dBtn','Enviar dúvida');
+}
+
+function pedirReuniao(){
+  gravarPub('duvidas',{
+    id:uid(),tipo:'reuniao',
+    texto:'Solicitação de reunião remota exclusiva.',
+    link:'',resposta:'',respLink:'',criadoEm:new Date().toISOString()
+  },null,null);
+}
+
+
+/* ═══════ ADMIN — etapas: prazo, entrega, alteração ═══════ */
+async function setEtapaCampo(eid,campo,valor){
+  const c=cli(); if(!c)return;
+  const e=(c.etapas||[]).find(x=>x.id===eid); if(!e)return;
+  e[campo]=valor.trim();
+  await save(); toast('Salvo ✓');
+}
+async function setAltDesc(eid,valor){
+  const c=cli(); if(!c)return;
+  const e=(c.etapas||[]).find(x=>x.id===eid); if(!e)return;
+  const v=valor.trim();
+  if(!v){ delete e.alt; }
+  else { if(!e.alt)e.alt={desc:'',escolha:null,prazo:'',valor:'',em:''}; e.alt.desc=v; }
+  await save(); toast('Salvo ✓'); renderClienteAdmin(); tab(2);
+}
+async function setAltCampo(eid,campo,valor){
+  const c=cli(); if(!c)return;
+  const e=(c.etapas||[]).find(x=>x.id===eid); if(!e||!e.alt)return;
+  e.alt[campo]=valor.trim();
+  await save(); toast('Salvo ✓');
+}
+async function limparAlt(eid){
+  const c=cli(); if(!c)return;
+  const e=(c.etapas||[]).find(x=>x.id===eid); if(!e||!e.alt)return;
+  e.alt.escolha=null; e.alt.em='';
+  await save(); toast('Resposta limpa'); renderClienteAdmin(); tab(2);
+}
+
+/* ═══════ ADMIN — dúvidas e contatos ═══════ */
+function renderDuvidasHTML(c){
+  const dvs=c.duvidas||[], cts=c.contatos||[];
+  let h='';
+
+  h+='<div class="section-title" style="margin-bottom:14px">Fornecedores / serviços</div>';
+  h+=`<div class="ad-card">
+    <div class="ad-rot">Registrar contato</div>
+    <div class="ad-row" style="margin-bottom:9px">
+      <div><input class="ad-in" id="acNome" placeholder="Nome do fornecedor / serviço"></div>
+      <div><input class="ad-in" id="acTel" placeholder="Telefone"></div>
+    </div>
+    <input class="ad-in" id="acObs" placeholder="Observação (opcional)" style="margin-bottom:9px">
+    <button class="btn-sm primary" onclick="addContatoArq()">+ Adicionar contato</button>
+  </div>`;
+
+  if(cts.length){
+    h+=cts.map(t=>`<div class="ad-card">
+      <div class="ad-card-top">
+        <span class="ad-card-nome">${esc(t.nome)}</span>
+        <span class="ad-pill ${t.resposta?'ok':'aberto'}">${t.resposta?'Contato realizado':'Aguardando'}</span>
+      </div>
+      ${t.tel?`<a class="iv-tel" href="tel:${esc(t.tel)}">${esc(t.tel)}</a>`:''}
+      ${t.obs?`<div class="ad-card-txt" style="margin-top:7px">${esc(t.obs)}</div>`:''}
+      ${t.link?`<a class="iv-link" href="${esc(t.link)}" target="_blank">Abrir anexo →</a>`:''}
+      <div class="iv-data" style="margin-top:7px">${fmt(t.criadoEm)}${t.porArq?' · registrado por você':' · enviado pelo cliente'}</div>
+      <textarea class="ad-in" id="rc_${t.id}" style="margin-top:10px" placeholder="💬 Anotação para o cliente — o que foi conversado">${esc(t.resposta||'')}</textarea>
+      <div class="ad-btns">
+        <button class="btn-sm primary" onclick="salvarRespContato('${t.id}')">Salvar</button>
+        <button class="btn-sm danger" onclick="delContato('${t.id}')">Excluir</button>
+      </div>
+    </div>`).join('');
+  } else {
+    h+='<div class="empty"><div class="empty-icon">◇</div><div class="empty-txt">Nenhum contato</div></div>';
+  }
+
+  h+='<div class="section-title" style="margin:30px 0 14px">Dúvidas e reuniões</div>';
+  if(dvs.length){
+    h+=dvs.map(d=>`<div class="ad-card">
+      <div class="ad-card-top">
+        <span class="ad-card-nome">${d.tipo==='reuniao'?'📅 Reunião remota':'Dúvida'}</span>
+        <span class="ad-pill ${d.resposta?'ok':'aberto'}">${d.resposta?'Respondida':'Aguardando'}</span>
+      </div>
+      <div class="ad-card-txt">${esc(d.texto)}</div>
+      ${d.link?`<a class="iv-link" href="${esc(d.link)}" target="_blank">Abrir anexo →</a>`:''}
+      <div class="iv-data" style="margin-top:7px">${fmt(d.criadoEm)}</div>
+      <textarea class="ad-in" id="rd_${d.id}" style="margin-top:10px" placeholder="💬 Sua resposta">${esc(d.resposta||'')}</textarea>
+      <input class="ad-in" id="rl_${d.id}" placeholder="Link de anexo na resposta (opcional)" value="${esc(d.respLink||'')}">
+      <div class="ad-btns">
+        <button class="btn-sm primary" onclick="salvarRespDuvida('${d.id}')">Salvar resposta</button>
+        <button class="btn-sm danger" onclick="delDuvida('${d.id}')">Excluir</button>
+      </div>
+    </div>`).join('');
+  } else {
+    h+='<div class="empty"><div class="empty-icon">◇</div><div class="empty-txt">Nenhuma dúvida</div></div>';
+  }
+  return h;
+}
+
+async function addContatoArq(){
+  const c=cli(); if(!c)return;
+  const nome=el('acNome')?.value.trim();
+  if(!nome){toast('Informe o nome');return;}
+  if(!c.contatos)c.contatos=[];
+  c.contatos.unshift({
+    id:uid(),nome,
+    tel:el('acTel')?.value.trim()||'',
+    obs:el('acObs')?.value.trim()||'',
+    link:'',resposta:'',porArq:true,criadoEm:new Date().toISOString()
+  });
+  await save(); toast('Contato adicionado ✓'); renderClienteAdmin(); tab(7);
+}
+async function salvarRespContato(id){
+  const c=cli(); if(!c)return;
+  const t=(c.contatos||[]).find(x=>x.id===id); if(!t)return;
+  t.resposta=el('rc_'+id)?.value.trim()||'';
+  await save(); toast('Salvo ✓'); renderClienteAdmin(); tab(7);
+}
+async function delContato(id){
+  const c=cli(); if(!c)return;
+  c.contatos=(c.contatos||[]).filter(x=>x.id!==id);
+  await save(); toast('Excluído'); renderClienteAdmin(); tab(7);
+}
+async function salvarRespDuvida(id){
+  const c=cli(); if(!c)return;
+  const d=(c.duvidas||[]).find(x=>x.id===id); if(!d)return;
+  d.resposta=el('rd_'+id)?.value.trim()||'';
+  d.respLink=el('rl_'+id)?.value.trim()||'';
+  await save(); toast('Resposta salva ✓'); renderClienteAdmin(); tab(7);
+}
+async function delDuvida(id){
+  const c=cli(); if(!c)return;
+  c.duvidas=(c.duvidas||[]).filter(x=>x.id!==id);
+  await save(); toast('Excluída'); renderClienteAdmin(); tab(7);
+}
+
+/* ═══════════ AGENDA DO PROJETO ═══════════ */
+const AG_TIPOS=['Reunião presencial','Reunião remota','Visita técnica','Formalização de entrega','Apresentação','Aprovação de etapa'];
+const AG_STATUS=['agendado','confirmado','realizado','remarcado','cancelado'];
+const AG_STATUS_ROT={agendado:'Agendado',confirmado:'Confirmado',realizado:'Realizado',remarcado:'Remarcado',cancelado:'Cancelado'};
+
+function agendaDe(c){
+  let ag=c.agenda||[];
+  if(!ag.length && c.visita && c.visita.data){
+    ag=[{id:'v0',tipo:'Visita técnica',objetivo:c.visita.desc||'',data:c.visita.data,hora:'',
+         status:'agendado',local:'',link:'',resumo:'',arquivos:[],orientacoes:'',proxEtapa:'',criadoEm:''}];
+  }
+  return ag;
+}
+function agAtivo(a){return a.status!=='realizado'&&a.status!=='cancelado';}
+function proxAgendamento(c){return agendaDe(c).find(agAtivo)||null;}
+
+function renderPubAgenda(c){
+  const ag=agendaDe(c);
+  if(!ag.length){
+    el('pAgenda').innerHTML='<div class="pub-vazio"><div class="pub-vazio-ico">◇</div><div class="pub-vazio-txt">Nenhum compromisso agendado</div><div class="pub-vazio-sub">Os agendamentos aparecem aqui assim que marcados.</div></div>';
+    return;
+  }
+  const prox=ag.filter(agAtivo), hist=ag.filter(a=>!agAtivo(a));
+  let h='';
+  if(prox.length){h+='<div class="ag-grupo">Próximos</div>'+prox.map(agItemHTML).join('');}
+  if(hist.length){h+='<div class="ag-grupo">Histórico</div>'+hist.map(agItemHTML).join('');}
+  el('pAgenda').innerHTML=h;
+}
+
+function agItemHTML(a){
+  const arqs=(a.arquivos||[]).filter(x=>x.url);
+  return `<div class="ag-item ${a.status}">
+    <div class="ag-cab">
+      <div style="flex:1;min-width:150px">
+        <div class="ag-tipo">${esc(a.tipo||'')}</div>
+        ${a.objetivo?`<div class="ag-obj">${esc(a.objetivo)}</div>`:''}
+      </div>
+      <span class="ag-st ${a.status}">${AG_STATUS_ROT[a.status]||''}</span>
+    </div>
+    ${(a.data||a.hora)?`<div class="ag-quando"><span>◷</span>${esc(a.data||'')}${a.hora?' · '+esc(a.hora):''}</div>`:''}
+    ${a.local?`<div class="ag-onde"><span style="opacity:.6">⌖</span><span>${esc(a.local)}</span></div>`:''}
+    ${a.link?`<div class="ag-onde"><span style="opacity:.6">↗</span><a href="${esc(a.link)}" target="_blank">Entrar na reunião</a></div>`:''}
+    ${a.resumo?`<div class="ag-sec"><div class="ag-sec-rot">Resumo da reunião</div><div class="ag-sec-txt">${esc(a.resumo)}</div></div>`:''}
+    ${arqs.length?`<div class="ag-sec"><div class="ag-sec-rot">Arquivos relacionados</div>${arqs.map(x=>`<a class="pl-item" href="${esc(x.url)}" target="_blank"><span class="pl-ico">📎</span><span class="pl-nome">${esc(x.nome||x.url)}</span><span class="pl-abrir">Abrir</span></a>`).join('')}</div>`:''}
+    ${a.orientacoes?`<div class="ag-orient"><b>💬 Orientações da arquiteta</b>${esc(a.orientacoes)}</div>`:''}
+    ${a.proxEtapa?`<div class="ag-prox"><span style="opacity:.6">→</span><span><b>Próxima etapa:</b> ${esc(a.proxEtapa)}</span></div>`:''}
+  </div>`;
+}
+
+/* ─── ADMIN ─── */
+function renderAgendaHTML(c){
+  const ag=c.agenda||[];
+  let h=`<div class="ad-card">
+    <div class="ad-rot">Novo agendamento</div>
+    <div class="ad-row" style="margin-bottom:9px">
+      <div><select class="ad-in" id="nTipo">${AG_TIPOS.map(t=>`<option>${t}</option>`).join('')}</select></div>
+      <div><select class="ad-in" id="nStatus">${AG_STATUS.map(s=>`<option value="${s}">${AG_STATUS_ROT[s]}</option>`).join('')}</select></div>
+    </div>
+    <input class="ad-in" id="nObj" placeholder="Objetivo do encontro" style="margin-bottom:9px">
+    <div class="ad-row" style="margin-bottom:9px">
+      <div><input class="ad-in" id="nData" placeholder="Data — ex: 28 de julho"></div>
+      <div><input class="ad-in" id="nHora" placeholder="Horário — ex: 14h"></div>
+    </div>
+    <input class="ad-in" id="nLocal" placeholder="Local (quando presencial)" style="margin-bottom:9px">
+    <input class="ad-in" id="nLink" placeholder="Link da reunião (quando remota)" style="margin-bottom:9px">
+    <button class="btn-sm primary" onclick="addAgenda()">+ Adicionar à agenda</button>
+  </div>`;
+
+  if(!ag.length){
+    h+=`<div class="empty"><div class="empty-icon">◇</div><div class="empty-txt">Agenda vazia</div><div class="empty-sub">Adicione o primeiro compromisso acima.</div></div>`;
+    if(c.visita&&c.visita.data)h+=`<div class="ad-card"><div class="ad-rot">Visita antiga (formato anterior)</div><div class="ad-card-txt">${esc(c.visita.data)} — ${esc(c.visita.desc||'')}</div><div class="ad-btns"><button class="btn-sm primary" onclick="migrarVisita()">Converter em agendamento</button></div></div>`;
+    return h;
+  }
+
+  h+=ag.map(a=>`<div class="ad-card">
+    <div class="ad-card-top">
+      <span class="ad-card-nome">${esc(a.tipo)}</span>
+      <span class="ag-st ${a.status}">${AG_STATUS_ROT[a.status]||''}</span>
+    </div>
+    <div class="ad-row" style="margin-bottom:9px">
+      <div><select class="ad-in" onchange="setAg('${a.id}','tipo',this.value)">${AG_TIPOS.map(t=>`<option${t===a.tipo?' selected':''}>${t}</option>`).join('')}</select></div>
+      <div><select class="ad-in" onchange="setAg('${a.id}','status',this.value)">${AG_STATUS.map(s=>`<option value="${s}"${s===a.status?' selected':''}>${AG_STATUS_ROT[s]}</option>`).join('')}</select></div>
+    </div>
+    <input class="ad-in" value="${esc(a.objetivo||'')}" placeholder="Objetivo" onchange="setAg('${a.id}','objetivo',this.value)" style="margin-bottom:9px">
+    <div class="ad-row" style="margin-bottom:9px">
+      <div><input class="ad-in" value="${esc(a.data||'')}" placeholder="Data" onchange="setAg('${a.id}','data',this.value)"></div>
+      <div><input class="ad-in" value="${esc(a.hora||'')}" placeholder="Horário" onchange="setAg('${a.id}','hora',this.value)"></div>
+    </div>
+    <input class="ad-in" value="${esc(a.local||'')}" placeholder="Local" onchange="setAg('${a.id}','local',this.value)" style="margin-bottom:9px">
+    <input class="ad-in" value="${esc(a.link||'')}" placeholder="Link da reunião" onchange="setAg('${a.id}','link',this.value)" style="margin-bottom:9px">
+    <textarea class="ad-in" placeholder="Resumo da reunião" onchange="setAg('${a.id}','resumo',this.value)">${esc(a.resumo||'')}</textarea>
+    <textarea class="ad-in" placeholder="💬 Orientações da arquiteta" onchange="setAg('${a.id}','orientacoes',this.value)">${esc(a.orientacoes||'')}</textarea>
+    <input class="ad-in" value="${esc(a.proxEtapa||'')}" placeholder="Próxima etapa" onchange="setAg('${a.id}','proxEtapa',this.value)" style="margin-bottom:11px">
+    <div class="ad-rot">Arquivos relacionados</div>
+    ${(a.arquivos||[]).map(x=>`<div class="etapa-link-item"><a href="${esc(x.url)}" target="_blank">📎 ${esc(x.nome||x.url)}</a><button class="bicon" onclick="delAgArq('${a.id}','${x.id}')">✕</button></div>`).join('')}
+    <div class="ad-row" style="margin-top:8px">
+      <div><input class="ad-in" id="an_${a.id}" placeholder="Nome do arquivo"></div>
+      <div><input class="ad-in" id="au_${a.id}" placeholder="Link"></div>
+    </div>
+    <div class="ad-btns">
+      <button class="btn-sm" onclick="addAgArq('${a.id}')">+ Anexar link</button>
+      <button class="btn-sm danger" onclick="delAgenda('${a.id}')">Excluir agendamento</button>
+    </div>
+  </div>`).join('');
+  return h;
+}
+
+async function addAgenda(){
+  const c=cli(); if(!c)return;
+  const data_=el('nData')?.value.trim();
+  if(!data_){toast('Informe a data');return;}
+  if(!c.agenda)c.agenda=[];
+  c.agenda.push({
+    id:uid(),
+    tipo:el('nTipo')?.value||AG_TIPOS[0],
+    objetivo:el('nObj')?.value.trim()||'',
+    data:data_,
+    hora:el('nHora')?.value.trim()||'',
+    status:el('nStatus')?.value||'agendado',
+    local:el('nLocal')?.value.trim()||'',
+    link:el('nLink')?.value.trim()||'',
+    resumo:'',arquivos:[],orientacoes:'',proxEtapa:'',
+    criadoEm:new Date().toISOString()
+  });
+  await save(); toast('Agendamento criado ✓'); renderClienteAdmin(); tab(3);
+}
+async function setAg(id,campo,valor){
+  const c=cli(); if(!c)return;
+  const a=(c.agenda||[]).find(x=>x.id===id); if(!a)return;
+  a[campo]=valor.trim?valor.trim():valor;
+  await save(); toast('Salvo ✓');
+  if(campo==='status'||campo==='tipo'){renderClienteAdmin();tab(3);}
+}
+async function delAgenda(id){
+  const c=cli(); if(!c)return;
+  c.agenda=(c.agenda||[]).filter(x=>x.id!==id);
+  await save(); toast('Excluído'); renderClienteAdmin(); tab(3);
+}
+async function addAgArq(id){
+  const c=cli(); if(!c)return;
+  const a=(c.agenda||[]).find(x=>x.id===id); if(!a)return;
+  const url=el('au_'+id)?.value.trim();
+  if(!url){toast('Informe o link');return;}
+  if(!a.arquivos)a.arquivos=[];
+  a.arquivos.push({id:uid(),nome:el('an_'+id)?.value.trim()||url,url});
+  await save(); toast('Anexado ✓'); renderClienteAdmin(); tab(3);
+}
+async function delAgArq(id,aid){
+  const c=cli(); if(!c)return;
+  const a=(c.agenda||[]).find(x=>x.id===id); if(!a)return;
+  a.arquivos=(a.arquivos||[]).filter(x=>x.id!==aid);
+  await save(); toast('Removido'); renderClienteAdmin(); tab(3);
+}
+async function migrarVisita(){
+  const c=cli(); if(!c||!c.visita)return;
+  if(!c.agenda)c.agenda=[];
+  c.agenda.push({id:uid(),tipo:'Visita técnica',objetivo:c.visita.desc||'',data:c.visita.data,hora:'',
+    status:'agendado',local:'',link:'',resumo:'',arquivos:[],orientacoes:'',proxEtapa:'',criadoEm:new Date().toISOString()});
+  c.visita=null;
+  await save(); toast('Convertido ✓'); renderClienteAdmin(); tab(3);
+}
+
 </script>
 </body>
 </html>
