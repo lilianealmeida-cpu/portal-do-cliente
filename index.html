@@ -932,6 +932,83 @@ textarea.ad-in{min-height:70px;resize:vertical;line-height:1.6;margin-bottom:9px
 @media(min-width:721px){
   .cnt-grid{grid-template-columns:repeat(4,1fr)}
 }
+
+/* ═══ REVISÃO DE PESO E CONTRASTE ═══ */
+body{font-weight:400}
+.cli-boas{font-size:15px;color:#4A4038;font-weight:400}
+.top-marca-t{color:#8A8078;font-weight:600;font-size:11px;letter-spacing:2.4px}
+.top-marca-s{color:#6B6058;font-weight:500;font-size:12.5px}
+.res-rot{color:#5A5048;font-weight:600}
+.res-val{font-weight:600;color:#16130F}
+.res-sub{color:#4A4038}
+.prog-rot{color:#5A5048;font-weight:600}
+.prog-sub{color:#5A5048;font-weight:500}
+.pv-tit{font-weight:500}
+.pv-intro{color:#443B33;font-weight:400}
+.pv-rot{font-weight:600;color:var(--brick-deep)}
+.fc-tit{font-weight:600}
+.fc-sub{color:#4A4038}
+.fc-in{font-weight:400;color:#16130F}
+.fc-in::placeholder{color:#8A8078}
+.et-nome{font-weight:600}
+.et-obs{color:#3D342C}
+.ag-obj{font-weight:600}
+.ag-tipo{font-weight:600;color:var(--brick-deep)}
+.ag-quando{font-weight:600}
+.ag-onde{color:#3D342C}
+.iv-nome{font-weight:600}
+.iv-txt{color:#3D342C}
+.mob-cli-nome{font-weight:600}
+.mob-cli-obra{color:#5A5048;font-weight:400}
+.nav-b{font-weight:600;color:#7A6F65}
+.nav-b svg{stroke:#7A6F65;stroke-width:1.7}
+.pub-vazio-txt{color:#5A5048;font-weight:500}
+
+/* ícone em traço, no lugar de emoji */
+.ico{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-3px}
+.res-ico .ico{width:21px;height:21px;color:#8A7F74}
+.pl-ico .ico{color:#8A7F74}
+.ag-onde .ico{color:#8A7F74}
+
+/* botão fixo de dúvida */
+.duv-fab{
+  position:fixed;right:16px;bottom:82px;z-index:70;
+  display:flex;align-items:center;gap:8px;
+  background:var(--ink);color:#fff;border:none;
+  border-radius:100px;padding:14px 20px;
+  font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;
+  cursor:pointer;box-shadow:0 6px 22px rgba(26,20,16,.26);
+}
+.duv-fab:active{background:var(--brick)}
+.duv-fab .ico{width:19px;height:19px;stroke:#fff}
+.duv-fab.hidden{display:none!important}
+
+/* opções de horário */
+.op-bloco{background:#FDF9F5;border:1px solid #E8D5C6;border-radius:11px;padding:16px 17px;margin-top:13px}
+.op-tit{font-size:14.5px;font-weight:600;color:var(--ink);margin-bottom:11px}
+.op-b{
+  display:flex;align-items:center;gap:11px;background:#fff;
+  border:1px solid var(--line);border-radius:10px;padding:14px 15px;
+  margin-bottom:9px;cursor:pointer;width:100%;text-align:left;
+  font-family:'DM Sans',sans-serif;font-size:15.5px;font-weight:500;color:var(--ink);
+}
+.op-b:active{border-color:var(--brick)}
+.op-b.on{border-color:var(--brick);background:var(--brick-pale);border-width:1.5px}
+.op-mark{font-size:15px;color:var(--brick);flex:none}
+.op-nenhuma{
+  width:100%;background:none;border:1px dashed var(--line2);border-radius:10px;
+  padding:13px;font-family:'DM Sans',sans-serif;font-size:14.5px;font-weight:500;
+  color:#6B6058;cursor:pointer;margin-top:2px;
+}
+.op-nenhuma.on{border-color:var(--brick);border-style:solid;color:var(--brick-deep);background:var(--brick-pale)}
+.op-feito{background:var(--brick-pale);border-radius:9px;padding:13px 15px;margin-top:4px;
+  font-size:14.5px;color:#3D2E26;line-height:1.6;font-weight:500}
+.op-feito b{display:block;font-size:11.5px;letter-spacing:.6px;text-transform:uppercase;
+  color:var(--brick-deep);margin-bottom:4px;font-weight:600}
+.op-lin{display:flex;align-items:center;gap:8px;background:var(--stone);
+  border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin-bottom:7px;font-size:14px}
+.op-lin span{flex:1}
 </style>
 </head>
 <body>
@@ -1029,6 +1106,11 @@ textarea.ad-in{min-height:70px;resize:vertical;line-height:1.6;margin-bottom:9px
     <div id="pContato"></div>
   </div>
 
+  <button class="duv-fab" id="duvFab" onclick="pubVer(2)">
+    <svg class="ico" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.3-.6L3 21l1.8-5.2A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4z"/></svg>
+    Dúvida
+  </button>
+
   <nav class="nav">
     <button class="nav-b on" id="nv0" onclick="pubVer(0)">
       <svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Projetos</button>
@@ -1096,6 +1178,18 @@ function el(id){return document.getElementById(id)}
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function fmt(iso){try{return new Date(iso).toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'});}catch{return''}}
 function ini(n){return(n||'?')[0].toUpperCase()}
+function cap(s){s=String(s||'');return s.charAt(0).toUpperCase()+s.slice(1).toLowerCase()}
+const ICO={
+  diamante:'<svg class="ico" viewBox="0 0 24 24"><path d="M12 3 21 12l-9 9-9-9z"/></svg>',
+  relogio:'<svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>',
+  seta:'<svg class="ico" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg>',
+  clipe:'<svg class="ico" viewBox="0 0 24 24"><path d="M20 11.5 12.3 19a4.6 4.6 0 0 1-6.6-6.5l7.8-7.8a3.1 3.1 0 0 1 4.4 4.4l-7.7 7.8a1.5 1.5 0 0 1-2.2-2.2l7.1-7.1"/></svg>',
+  link:'<svg class="ico" viewBox="0 0 24 24"><path d="M10 13a4 4 0 0 0 5.7 0l3-3A4 4 0 0 0 13 4.3l-1.7 1.7"/><path d="M14 11a4 4 0 0 0-5.7 0l-3 3A4 4 0 0 0 11 19.7l1.7-1.7"/></svg>',
+  pin:'<svg class="ico" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>',
+  externo:'<svg class="ico" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
+  balao:'<svg class="ico" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.3-.6L3 21l1.8-5.2A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4z"/></svg>',
+  calendario:'<svg class="ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>'
+};
 function uid(){return Math.random().toString(36).slice(2,10)}
 function cli(){return(data?.clientes||[]).find(c=>c.id===cliId)}
 function toast(m){const t=el('toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2400)}
@@ -1704,6 +1798,7 @@ async function addEntItem(lista){const ent=getEnt();ent[lista].push({id:'e'+(ent
 
 // PÚBLICO
 function pubVer(n){
+  el('duvFab')?.classList.toggle('hidden', n===2);
   for(let i=0;i<3;i++){
     el('pv'+i)?.classList.toggle('hidden',i!==n);
     el('nv'+i)?.classList.toggle('on',i===n);
@@ -1718,7 +1813,7 @@ async function showPub(cid){
   if(!c){show('vLogin');return;}
   pubCli=c;
   show('vPub');
-  el('pGreet').textContent='Olá, '+c.nome.split(' ')[0];
+  el('pGreet').textContent='Olá, '+cap(c.nome.split(' ')[0]);
   el('pProj').textContent=c.obra||'';
   renderPubTudo();
 }
@@ -1749,7 +1844,7 @@ function renderPubResumo(c){
 
   el('pResumo').innerHTML=`
     <div class="res-card">
-      <div class="res-ico">◆</div>
+      <div class="res-ico">${ICO.diamante}</div>
       <div>
         <div class="res-rot">Status atual</div>
         <div class="res-val">${ativa?esc(ativa.nome):(conc&&conc===ets.length?'Projeto concluído':'Em desenvolvimento')}</div>
@@ -1757,7 +1852,7 @@ function renderPubResumo(c){
       </div>
     </div>
     <div class="res-card">
-      <div class="res-ico">◷</div>
+      <div class="res-ico">${ICO.relogio}</div>
       <div>
         <div class="res-rot">Próximo agendamento</div>
         <div class="res-val">${prox1?esc(prox1.data)+(prox1.hora?' · '+esc(prox1.hora):''):'A definir'}</div>
@@ -1765,7 +1860,7 @@ function renderPubResumo(c){
       </div>
     </div>
     <div class="res-card">
-      <div class="res-ico">→</div>
+      <div class="res-ico">${ICO.seta}</div>
       <div>
         <div class="res-rot">Próxima etapa</div>
         <div class="res-val">${prox?esc(prox.nome):'—'}</div>
@@ -1781,28 +1876,6 @@ function renderPubResumo(c){
       <div class="prog-bar"><div class="prog-fill" style="width:${pct}%"></div></div>
       <div class="prog-sub">${conc} de ${ets.length} etapas concluídas</div>
     </div>`:''}
-    <div class="cnt-grid">
-      <div class="cnt" onclick="pubVer(0)">
-        <div class="cnt-ico">📎</div>
-        <div class="cnt-num">${nArq}</div>
-        <div class="cnt-rot">Arquivos</div>
-      </div>
-      <div class="cnt" onclick="pubVer(1)">
-        <div class="cnt-ico">📅</div>
-        <div class="cnt-num">${nAg}</div>
-        <div class="cnt-rot">Agenda</div>
-      </div>
-      <div class="cnt" onclick="pubVer(0)">
-        <div class="cnt-ico">◈</div>
-        <div class="cnt-num">${ets.length}</div>
-        <div class="cnt-rot">Etapas</div>
-      </div>
-      <div class="cnt" onclick="pubVer(2)">
-        <div class="cnt-ico">💬</div>
-        <div class="cnt-num">${nDuv}</div>
-        <div class="cnt-rot">Em aberto</div>
-      </div>
-    </div>
     ${c.atualizadoEm?`<div class="upd">Última atualização · ${fmt(c.atualizadoEm)}</div>`:''}`;
 }
 
@@ -1813,11 +1886,11 @@ function renderPubProjetos(c){
   const lks=c.links||[];
   if(arqs.length){
     h+='<div class="pv-rot">Projetos concluídos</div>';
-    h+=arqs.map(a=>`<a class="pl-item" href="${esc(a.link)}" target="_blank"><span class="pl-ico">📎</span><span class="pl-nome">${esc(a.titulo||a.nome||'Arquivo')}</span><span class="pl-abrir">Abrir</span></a>`).join('');
+    h+=arqs.map(a=>`<a class="pl-item" href="${esc(a.link)}" target="_blank"><span class="pl-ico">${ICO.clipe}</span><span class="pl-nome">${esc(a.titulo||a.nome||'Arquivo')}</span><span class="pl-abrir">Abrir</span></a>`).join('');
   }
   if(lks.length){
     h+='<div class="pv-rot">Links úteis</div>';
-    h+=lks.map(l=>`<a class="pl-item" href="${esc(l.url)}" target="_blank"><span class="pl-ico">🔗</span><span class="pl-nome">${esc(l.nome||l.url)}</span><span class="pl-abrir">Abrir</span></a>`).join('');
+    h+=lks.map(l=>`<a class="pl-item" href="${esc(l.url)}" target="_blank"><span class="pl-ico">${ICO.link}</span><span class="pl-nome">${esc(l.nome||l.url)}</span><span class="pl-abrir">Abrir</span></a>`).join('');
   }
   if(!h)h='<div class="pub-vazio"><div class="pub-vazio-ico">◇</div><div class="pub-vazio-txt">Nada anexado ainda</div><div class="pub-vazio-sub">Os arquivos aparecem conforme as etapas são concluídas.</div></div>';
   el('pProjetos').innerHTML=h;
@@ -1854,7 +1927,7 @@ function renderPubEtapas(c){
       ${e.prazo?`<div><div class="et-data-rot">Prazo previsto</div><div class="et-data-val">${esc(e.prazo)}</div></div>`:''}
       ${e.entrega?`<div><div class="et-data-rot">Data de entrega</div><div class="et-data-val">${esc(e.entrega)}</div></div>`:''}
     </div>`:'';
-    const lks=(e.links||[]).length?`<div style="margin-top:11px">${e.links.map(l=>`<a class="pl-item" href="${esc(l.url)}" target="_blank"><span class="pl-ico">📎</span><span class="pl-nome">${esc(l.nome||l.url)}</span><span class="pl-abrir">Abrir</span></a>`).join('')}</div>`:'';
+    const lks=(e.links||[]).length?`<div style="margin-top:11px">${e.links.map(l=>`<a class="pl-item" href="${esc(l.url)}" target="_blank"><span class="pl-ico">${ICO.clipe}</span><span class="pl-nome">${esc(l.nome||l.url)}</span><span class="pl-abrir">Abrir</span></a>`).join('')}</div>`:'';
     return `<div class="et ${e.status}">
       <div class="et-top">
         <div class="et-cir">${e.status==='concluida'?'✓':e.status==='ativa'?'◆':'◇'}</div>
@@ -1913,7 +1986,7 @@ function renderPubContato(c){
         ${t.tel?`<a class="iv-tel" href="tel:${esc(t.tel)}">${esc(t.tel)}</a>`:''}
         ${t.obs?`<div class="iv-txt" style="margin-top:7px">${esc(t.obs)}</div>`:''}
         ${t.link?`<a class="iv-link" href="${esc(t.link)}" target="_blank">Abrir anexo →</a>`:''}
-        ${t.resposta?`<div class="iv-resp"><b>💬 Arquiteta</b>${esc(t.resposta)}</div>`:''}
+        ${t.resposta?`<div class="iv-resp"><b>Arquiteta</b>${esc(t.resposta)}</div>`:''}
         <div class="iv-data" style="margin-top:8px">${fmt(t.criadoEm)}${t.porArq?' · registrado pela arquiteta':''}</div>
       </div>`).join(''):''}
 
@@ -1933,9 +2006,20 @@ function renderPubContato(c){
         </div>
         <div class="iv-txt">${esc(d.texto)}</div>
         ${d.link?`<a class="iv-link" href="${esc(d.link)}" target="_blank">Abrir anexo →</a>`:''}
-        ${d.resposta?`<div class="iv-resp"><b>💬 Arquiteta</b>${esc(d.resposta)}${d.respLink?`<br><a class="iv-link" href="${esc(d.respLink)}" target="_blank">Abrir anexo →</a>`:''}</div>`:''}
+        ${d.resposta?`<div class="iv-resp"><b>Arquiteta</b>${esc(d.resposta)}${d.respLink?`<br><a class="iv-link" href="${esc(d.respLink)}" target="_blank">Abrir anexo →</a>`:''}</div>`:''}
         <div class="iv-data" style="margin-top:8px">${fmt(d.criadoEm)}</div>
       </div>`).join(''):''}`;
+}
+
+const EMAIL_ARQ='lilianearquiteta@gmail.com';
+async function avisarPorEmail(assunto,corpo){
+  try{
+    await fetch('https://formsubmit.co/ajax/'+EMAIL_ARQ,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({_subject:assunto,_template:'table',Mensagem:corpo})
+    });
+  }catch(e){/* o portal continua funcionando mesmo se o aviso falhar */}
 }
 
 async function gravarPub(campo,item,btnId,limpar){
@@ -1953,6 +2037,17 @@ async function gravarPub(campo,item,btnId,limpar){
     data=rec; pubCli=rec.clientes[i];
     renderPubContato(pubCli);
     toast('Enviado ✓');
+    const quem=pubCli.nome+(pubCli.obra?' — '+pubCli.obra:'');
+    if(campo==='duvidas'){
+      avisarPorEmail(
+        (item.tipo==='reuniao'?'Pedido de reunião — ':'Nova dúvida — ')+pubCli.nome,
+        quem+'\n\n'+item.texto+(item.link?'\n\nAnexo: '+item.link:'')
+      );
+    }else{
+      avisarPorEmail('Contato de fornecedor — '+pubCli.nome,
+        quem+'\n\nFornecedor: '+item.nome+(item.tel?'\nTelefone: '+item.tel:'')
+        +(item.obs?'\n\n'+item.obs:'')+(item.link?'\n\nAnexo: '+item.link:''));
+    }
     return true;
   }catch(e){
     if(btn){btn.disabled=false;btn.textContent=limpar||'Enviar';}
@@ -2156,11 +2251,12 @@ function agItemHTML(a){
       <span class="ag-st ${a.status}">${AG_STATUS_ROT[a.status]||''}</span>
     </div>
     ${(a.data||a.hora)?`<div class="ag-quando"><span>◷</span>${esc(a.data||'')}${a.hora?' · '+esc(a.hora):''}</div>`:''}
-    ${a.local?`<div class="ag-onde"><span style="opacity:.6">⌖</span><span>${esc(a.local)}</span></div>`:''}
-    ${a.link?`<div class="ag-onde"><span style="opacity:.6">↗</span><a href="${esc(a.link)}" target="_blank">Entrar na reunião</a></div>`:''}
+    ${a.local?`<div class="ag-onde">${ICO.pin}<span>${esc(a.local)}</span></div>`:''}
+    ${a.link?`<div class="ag-onde">${ICO.externo}<a href="${esc(a.link)}" target="_blank">Entrar na reunião</a></div>`:''}
     ${a.resumo?`<div class="ag-sec"><div class="ag-sec-rot">Resumo da reunião</div><div class="ag-sec-txt">${esc(a.resumo)}</div></div>`:''}
-    ${arqs.length?`<div class="ag-sec"><div class="ag-sec-rot">Arquivos relacionados</div>${arqs.map(x=>`<a class="pl-item" href="${esc(x.url)}" target="_blank"><span class="pl-ico">📎</span><span class="pl-nome">${esc(x.nome||x.url)}</span><span class="pl-abrir">Abrir</span></a>`).join('')}</div>`:''}
-    ${a.orientacoes?`<div class="ag-orient"><b>💬 Orientações da arquiteta</b>${esc(a.orientacoes)}</div>`:''}
+    ${arqs.length?`<div class="ag-sec"><div class="ag-sec-rot">Arquivos relacionados</div>${arqs.map(x=>`<a class="pl-item" href="${esc(x.url)}" target="_blank"><span class="pl-ico">${ICO.clipe}</span><span class="pl-nome">${esc(x.nome||x.url)}</span><span class="pl-abrir">Abrir</span></a>`).join('')}</div>`:''}
+    ${opcoesHTML(a)}
+    ${a.orientacoes?`<div class="ag-orient"><b>Orientações da arquiteta</b>${esc(a.orientacoes)}</div>`:''}
     ${a.proxEtapa?`<div class="ag-prox"><span style="opacity:.6">→</span><span><b>Próxima etapa:</b> ${esc(a.proxEtapa)}</span></div>`:''}
   </div>`;
 }
@@ -2209,7 +2305,8 @@ function renderAgendaHTML(c){
     <textarea class="ad-in" placeholder="Resumo da reunião" onchange="setAg('${a.id}','resumo',this.value)">${esc(a.resumo||'')}</textarea>
     <textarea class="ad-in" placeholder="💬 Orientações da arquiteta" onchange="setAg('${a.id}','orientacoes',this.value)">${esc(a.orientacoes||'')}</textarea>
     <input class="ad-in" value="${esc(a.proxEtapa||'')}" placeholder="Próxima etapa" onchange="setAg('${a.id}','proxEtapa',this.value)" style="margin-bottom:11px">
-    <div class="ad-rot">Arquivos relacionados</div>
+    ${opcoesAdminHTML(a)}
+    <div class="ad-rot" style="margin-top:12px">Arquivos relacionados</div>
     ${(a.arquivos||[]).map(x=>`<div class="etapa-link-item"><a href="${esc(x.url)}" target="_blank">📎 ${esc(x.nome||x.url)}</a><button class="bicon" onclick="delAgArq('${a.id}','${x.id}')">✕</button></div>`).join('')}
     <div class="ad-row" style="margin-top:8px">
       <div><input class="ad-in" id="an_${a.id}" placeholder="Nome do arquivo"></div>
@@ -2276,6 +2373,87 @@ async function migrarVisita(){
     status:'agendado',local:'',link:'',resumo:'',arquivos:[],orientacoes:'',proxEtapa:'',criadoEm:new Date().toISOString()});
   c.visita=null;
   await save(); toast('Convertido ✓'); renderClienteAdmin(); tab(3);
+}
+
+/* ═══════ OPÇÕES DE HORÁRIO ═══════ */
+function opcoesHTML(a){
+  const ops=a.opcoes||[];
+  if(!ops.length) return '';
+  if(a.escolha){
+    const esc_=a.escolha==='nenhuma'
+      ? 'Nenhuma das opções serve — vou propor outras datas.'
+      : (ops.find(o=>o.id===a.escolha)?.texto||'');
+    return `<div class="op-bloco"><div class="op-feito"><b>✓ Sua escolha</b>${esc(esc_)}</div></div>`;
+  }
+  return `<div class="op-bloco">
+    <div class="op-tit">Escolha o melhor horário</div>
+    ${ops.map(o=>`<button class="op-b" onclick="escolherHorario('${a.id}','${o.id}')"><span class="op-mark">○</span>${esc(o.texto)}</button>`).join('')}
+    <button class="op-nenhuma" onclick="escolherHorario('${a.id}','nenhuma')">Nenhuma dessas serve</button>
+  </div>`;
+}
+
+async function escolherHorario(agId,opId){
+  const c=pubCli; if(!c)return;
+  try{
+    const r=await fetch(BURL()+'?meta=false',{headers:HDR()});
+    const rec=await r.json();
+    const i=rec.clientes.findIndex(x=>x.id===c.id);
+    const a=(rec.clientes[i].agenda||[]).find(x=>x.id===agId);
+    if(!a||a.escolha)return;
+    a.escolha=opId;
+    a.escolhaEm=new Date().toISOString();
+    await fetch(BURL(),{method:'PUT',headers:HDR(),body:JSON.stringify(rec)});
+    data=rec; pubCli=rec.clientes[i];
+    renderPubAgenda(pubCli); renderPubResumo(pubCli);
+    toast('Horário escolhido ✓');
+    const txt = opId==='nenhuma'
+      ? 'Nenhuma das opções serve — precisa de novas datas.'
+      : ((a.opcoes||[]).find(o=>o.id===opId)?.texto||'');
+    avisarPorEmail('Horário escolhido — '+pubCli.nome,
+      pubCli.nome+(pubCli.obra?' — '+pubCli.obra:'')+'\n\n'+a.tipo+'\n'+txt);
+  }catch(e){toast('Não foi possível registrar. Tente de novo.');}
+}
+
+/* ─── admin: cadastrar as opções ─── */
+function opcoesAdminHTML(a){
+  const ops=a.opcoes||[];
+  let h='<div class="ad-rot" style="margin-top:12px">Opções de horário para o cliente escolher</div>';
+  if(a.escolha){
+    const t=a.escolha==='nenhuma'
+      ? 'Nenhuma das opções serve'
+      : (ops.find(o=>o.id===a.escolha)?.texto||'');
+    h+=`<div class="ad-resp"><b>✓ Cliente escolheu — ${fmt(a.escolhaEm)}</b>${esc(t)}</div>`;
+    h+=`<div class="ad-btns"><button class="btn-sm" onclick="limparEscolha('${a.id}')">Limpar escolha</button></div>`;
+  }
+  h+=ops.map(o=>`<div class="op-lin"><span>${esc(o.texto)}</span><button class="bicon" onclick="delOpcao('${a.id}','${o.id}')">✕</button></div>`).join('');
+  h+=`<div class="ad-row" style="margin-top:6px">
+    <div><input class="ad-in" id="op_${a.id}" placeholder="Ex: terça, 28/07, 14h"></div>
+  </div>
+  <div class="ad-btns"><button class="btn-sm" onclick="addOpcao('${a.id}')">+ Adicionar opção</button></div>`;
+  return h;
+}
+
+async function addOpcao(agId){
+  const c=cli(); if(!c)return;
+  const a=(c.agenda||[]).find(x=>x.id===agId); if(!a)return;
+  const t=el('op_'+agId)?.value.trim();
+  if(!t){toast('Escreva a opção');return;}
+  if(!a.opcoes)a.opcoes=[];
+  a.opcoes.push({id:uid(),texto:t});
+  await save(); toast('Opção adicionada ✓'); renderClienteAdmin(); tab(3);
+}
+async function delOpcao(agId,opId){
+  const c=cli(); if(!c)return;
+  const a=(c.agenda||[]).find(x=>x.id===agId); if(!a)return;
+  a.opcoes=(a.opcoes||[]).filter(o=>o.id!==opId);
+  if(a.escolha===opId){a.escolha=null;a.escolhaEm='';}
+  await save(); toast('Removida'); renderClienteAdmin(); tab(3);
+}
+async function limparEscolha(agId){
+  const c=cli(); if(!c)return;
+  const a=(c.agenda||[]).find(x=>x.id===agId); if(!a)return;
+  a.escolha=null; a.escolhaEm='';
+  await save(); toast('Escolha limpa'); renderClienteAdmin(); tab(3);
 }
 
 </script>
