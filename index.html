@@ -1072,6 +1072,43 @@ textarea.dv-in{min-height:120px;resize:vertical;line-height:1.6}
 }
 .dv-ok-tit{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500;margin-bottom:6px}
 .dv-ok-txt{font-size:15px;color:#4A4038;line-height:1.6}
+
+/* ═══ NOTA DO ITEM ═══ */
+.ent-nota{
+  font-size:13.5px;font-style:italic;color:#6B6058;line-height:1.65;
+  background:var(--stone);border-left:2px solid var(--line2);
+  padding:10px 13px;margin-top:10px;border-radius:0 8px 8px 0;
+}
+.ent-custom-aviso{
+  font-size:12px;color:var(--brick-deep);font-weight:600;
+  letter-spacing:.4px;margin-bottom:6px;
+}
+textarea.ent-edit{
+  width:100%;background:var(--stone);border:1px solid var(--line);
+  color:var(--ink);font-family:'DM Sans',sans-serif;font-size:13px;
+  padding:9px 11px;outline:none;border-radius:8px;margin-bottom:7px;
+  resize:vertical;line-height:1.6;min-height:62px;
+}
+textarea.ent-edit:focus{border-color:var(--brick);background:#fff}
+
+/* ═══ CHECKLIST DO CLIENTE ═══ */
+.ck{display:flex;flex-direction:column;gap:2px;margin-top:10px}
+.ck-l{display:flex;align-items:flex-start;gap:11px;padding:8px 0}
+.ck-b{
+  width:21px;height:21px;border-radius:50%;flex:none;margin-top:1px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;border:1.5px solid var(--line2);background:var(--white);color:transparent;
+}
+.ck-l.feito .ck-b{background:var(--green);border-color:var(--green);color:#fff}
+.ck-l.agora .ck-b{background:var(--brick);border-color:var(--brick);color:#fff}
+.ck-t{font-size:14.5px;line-height:1.55;color:#8A8078;font-weight:400;padding-top:1px}
+.ck-l.feito .ck-t{color:#3D342C;font-weight:500}
+.ck-l.agora .ck-t{color:var(--ink);font-weight:600}
+.ck-agora-tag{
+  display:inline-block;font-size:11px;letter-spacing:.5px;font-weight:600;
+  color:var(--brick-deep);background:var(--brick-pale);border:1px solid #E8BCA8;
+  border-radius:100px;padding:2px 9px;margin-left:8px;vertical-align:1px;
+}
 </style>
 </head>
 <body>
@@ -1854,24 +1891,47 @@ function renderEntregas(modo){
   target.innerHTML=html;
 }
 function renderEntItem(it,lista,isAdmin){
-  const statusList=ENT_STATUS[it.tipo]||ENT_STATUS.padrao;
+  /* Se o item tiver status escritos à mão, eles substituem a lista pronta */
+  const statusList=(Array.isArray(it.statusCustom)&&it.statusCustom.length)
+    ? it.statusCustom
+    : (ENT_STATUS[it.tipo]||ENT_STATUS.padrao);
   const isLast=it.status&&it.status===statusList[statusList.length-1];
   let html=`<div class="ent-bloco"><div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:8px"><div style="flex:1">`;
-  if(isAdmin&&it.edit){html+=`<div class="ent-nome-el"><input value="${esc(it.nome)}" onchange="updateEntItem('${lista}','${it.id}','nome',this.value)"/></div><div style="margin-bottom:6px"><select class="ent-tipo-sel" onchange="updateEntItem('${lista}','${it.id}','tipo',this.value)">${ENT_TIPOS.map(t=>`<option value="${t}"${it.tipo===t?' selected':''}>${t}</option>`).join('')}</select></div><div class="ent-item-obs"><input value="${esc(it.obs)}" placeholder="Observação..." onchange="updateEntItem('${lista}','${it.id}','obs',this.value)"/></div>`;}
+  if(isAdmin&&it.edit){html+=`<div class="ent-nome-el"><input value="${esc(it.nome)}" onchange="updateEntItem('${lista}','${it.id}','nome',this.value)"/></div><div style="margin-bottom:6px"><select class="ent-tipo-sel" onchange="updateEntItem('${lista}','${it.id}','tipo',this.value)">${ENT_TIPOS.map(t=>`<option value="${t}"${it.tipo===t?' selected':''}>${t}</option>`).join('')}</select></div><div class="ent-item-obs"><input value="${esc(it.obs)}" placeholder="Observação..." onchange="updateEntItem('${lista}','${it.id}','obs',this.value)"/></div>
+    <div class="ent-custom-aviso">Status personalizados — um por linha (vazio usa a lista padrão)</div>
+    <textarea class="ent-edit" placeholder="Ex: Via impressa entregue e assinada&#10;Liberado para orçamentos e execução" onchange="setStatusCustom('${lista}','${it.id}',this.value)">${esc((it.statusCustom||[]).join('\n'))}</textarea>
+    <div class="ent-custom-aviso">Nota que o cliente lê abaixo dos status</div>
+    <textarea class="ent-edit" placeholder="Ex: Nesta reunião será feita a conferência da versão impressa..." onchange="updateEntItem('${lista}','${it.id}','nota',this.value)">${esc(it.nota||'')}</textarea>`;}
   else{html+=`<div class="ent-nome-el">${esc(it.nome)}</div>`;if(it.obs)html+=`<div class="ent-item-obs">${esc(it.obs)}</div>`;}
   html+=`</div>`;
   if(isAdmin)html+=`<div class="ent-actions"><button class="bicon" onclick="toggleEntEdit('${lista}','${it.id}')">${it.edit?'✓':'✎'}</button><button class="bicon" onclick="deleteEntItem('${lista}','${it.id}')" style="color:var(--brick)">✕</button></div>`;
   if(isAdmin){
     html+=`</div><div class="ent-status-wrap">${statusList.map(s=>`<button class="ent-status${it.status===s?' on':''}" onclick="setEntStatus('${lista}','${it.id}','${s.replace(/'/g,"\\'")}')">${s}</button>`).join('')}</div>`;
   }else{
-    /* cliente vê apenas o status atual, sem as demais opções */
-    html+=`</div><div class="ent-status-wrap"><span class="ent-status on" style="cursor:default">${esc(it.status)}</span></div>`;
+    /* cliente vê a sequência: concluídas em verde, a atual em terracota, as demais em aberto */
+    const iAtual=statusList.indexOf(it.status);
+    html+=`</div><div class="ck">${statusList.map((s,i)=>{
+      const cls=i<iAtual?'feito':(i===iAtual?'agora':'');
+      const marca=i<iAtual?'✓':(i===iAtual?'✓':'');
+      return `<div class="ck-l ${cls}"><div class="ck-b">${marca}</div><div class="ck-t">${esc(s)}${i===iAtual?'<span class="ck-agora-tag">Atual</span>':''}</div></div>`;
+    }).join('')}</div>`;
   }
+  if(it.nota&&!(isAdmin&&it.edit))html+=`<div class="ent-nota">${esc(it.nota)}</div>`;
   if(isLast)html+=`<div class="ent-final">Etapa concluída.</div>`;
   html+=`</div>`;
   return html;
 }
 async function updateEntObs(val){getEnt().obsGeral=val;await save();}
+async function setStatusCustom(lista,id,texto){
+  const ent=getEnt();
+  const it=ent[lista].find(x=>x.id===id); if(!it)return;
+  const linhas=String(texto||'').split('\n').map(s=>s.trim()).filter(Boolean);
+  if(linhas.length) it.statusCustom=linhas; else delete it.statusCustom;
+  /* se o status atual sumiu da nova lista, limpa para não ficar inconsistente */
+  if(it.status && linhas.length && !linhas.includes(it.status)) it.status='';
+  await save(); toast('Status atualizados ✓'); renderEntregas('admin');
+}
+
 function updateEntItem(lista,id,campo,val){const ent=getEnt();const it=ent[lista].find(x=>x.id===id);if(it)it[campo]=val;}
 function toggleEntEdit(lista,id){const ent=getEnt();const it=ent[lista].find(x=>x.id===id);if(it)it.edit=!it.edit;renderEntregas('admin');}
 async function setEntStatus(lista,id,s){const ent=getEnt();const it=ent[lista].find(x=>x.id===id);if(it){it.status=s;await save();}renderEntregas('admin');}
