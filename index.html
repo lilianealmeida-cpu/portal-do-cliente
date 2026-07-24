@@ -1143,11 +1143,10 @@ textarea.dv-in{min-height:120px;resize:vertical;line-height:1.6}
 
   <!-- PROJETOS -->
   <div class="pv" id="pv0">
-    <div class="pv-tit">Projetos / Links úteis</div>
-    <p class="pv-intro">Projetos e serviços de arquitetura, anexados a cada etapa concluída — acompanhe pelo cronograma.</p>
+    <div id="pTopoProj"></div>
     <div id="pProjetos"></div>
     <div id="cEntregasPub" style="margin-top:30px"></div>
-    <div class="pv-rot" style="margin-top:34px">Cronograma — etapas</div>
+    <div class="pv-rot" id="pRotCrono" style="margin-top:34px">Cronograma — etapas</div>
     <div id="pEtapaList"></div>
     <div class="crono-obs">
       Não gerencio obra. Esta etapa independe do andamento da obra.<br>
@@ -1832,15 +1831,26 @@ function renderEntregas(modo){
   const isAdmin=modo==='admin';
   const target=isAdmin?el('cEntregasAdmin'):el('cEntregasPub');
   if(!target)return;
-  let html=`<div style="margin-bottom:20px"><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--brick);margin-bottom:12px">Projeto Executivo de Obra</div>`;
+  /* Na visão do cliente, exibe apenas o que já tem status marcado */
+  const visIt = isAdmin ? ent.itens : ent.itens.filter(i=>i.status);
+  const visCo = isAdmin ? ent.complementares : ent.complementares.filter(i=>i.status);
+  if(!isAdmin && !visIt.length && !visCo.length){ target.innerHTML=''; return; }
+
+  let html='';
+  if(isAdmin || visIt.length)
+    html+=`<div style="margin-bottom:20px"><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--brick);margin-bottom:12px">Projeto Executivo de Obra</div>`;
   if(isAdmin)html+=`<div class="ent-obs"><div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--brick);margin-bottom:4px">Observação geral</div><textarea rows="2" onchange="updateEntObs(this.value)" placeholder="Descreva o escopo...">${ent.obsGeral||''}</textarea></div>`;
-  else if(ent.obsGeral)html+=`<div class="ent-obs">${esc(ent.obsGeral)}</div>`;
-  html+=ent.itens.map(it=>renderEntItem(it,'itens',isAdmin)).join('');
+  else if(ent.obsGeral&&visIt.length)html+=`<div class="ent-obs">${esc(ent.obsGeral)}</div>`;
+  html+=visIt.map(it=>renderEntItem(it,'itens',isAdmin)).join('');
   if(isAdmin)html+=`<button class="ent-add" onclick="addEntItem('itens')">+ Adicionar item</button>`;
-  html+=`</div><div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--brick);margin-bottom:12px">Projetos Complementares</div>`;
-  html+=ent.complementares.map(it=>renderEntItem(it,'complementares',isAdmin)).join('');
-  if(isAdmin)html+=`<button class="ent-add" onclick="addEntItem('complementares')">+ Adicionar complementar</button>`;
-  html+=`</div>`;
+  if(isAdmin || visIt.length) html+=`</div>`;
+
+  if(isAdmin || visCo.length){
+    html+=`<div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--brick);margin-bottom:12px">Projetos Complementares</div>`;
+    html+=visCo.map(it=>renderEntItem(it,'complementares',isAdmin)).join('');
+    if(isAdmin)html+=`<button class="ent-add" onclick="addEntItem('complementares')">+ Adicionar complementar</button>`;
+    html+=`</div>`;
+  }
   target.innerHTML=html;
 }
 function renderEntItem(it,lista,isAdmin){
@@ -1851,7 +1861,12 @@ function renderEntItem(it,lista,isAdmin){
   else{html+=`<div class="ent-nome-el">${esc(it.nome)}</div>`;if(it.obs)html+=`<div class="ent-item-obs">${esc(it.obs)}</div>`;}
   html+=`</div>`;
   if(isAdmin)html+=`<div class="ent-actions"><button class="bicon" onclick="toggleEntEdit('${lista}','${it.id}')">${it.edit?'✓':'✎'}</button><button class="bicon" onclick="deleteEntItem('${lista}','${it.id}')" style="color:var(--brick)">✕</button></div>`;
-  html+=`</div><div class="ent-status-wrap">${statusList.map(s=>`<button class="ent-status${it.status===s?' on':''}"${isAdmin?` onclick="setEntStatus('${lista}','${it.id}','${s.replace(/'/g,"\\'")}')"`:' disabled'}>${s}</button>`).join('')}</div>`;
+  if(isAdmin){
+    html+=`</div><div class="ent-status-wrap">${statusList.map(s=>`<button class="ent-status${it.status===s?' on':''}" onclick="setEntStatus('${lista}','${it.id}','${s.replace(/'/g,"\\'")}')">${s}</button>`).join('')}</div>`;
+  }else{
+    /* cliente vê apenas o status atual, sem as demais opções */
+    html+=`</div><div class="ent-status-wrap"><span class="ent-status on" style="cursor:default">${esc(it.status)}</span></div>`;
+  }
   if(isLast)html+=`<div class="ent-final">Etapa concluída.</div>`;
   html+=`</div>`;
   return html;
@@ -1950,6 +1965,13 @@ function renderPubResumo(c){
 /* ───── PROJETOS ───── */
 function renderPubProjetos(c){
   let h='';
+  const temEnt=(((c.entregas||{}).itens)||[]).some(i=>i.status)
+            || (((c.entregas||{}).complementares)||[]).some(i=>i.status);
+  const temArq=(c.arquivos||[]).some(a=>a.link)||((c.links||[]).length>0);
+  el('pTopoProj').innerHTML=(temArq||temEnt)
+    ? `<div class="pv-tit">Projetos / Links úteis</div>
+       <p class="pv-intro">Projetos e serviços de arquitetura, anexados a cada etapa concluída — acompanhe pelo cronograma.</p>`
+    : '';
   const arqs=(c.arquivos||[]).filter(a=>a.link);
   const lks=c.links||[];
   if(arqs.length){
@@ -1960,8 +1982,9 @@ function renderPubProjetos(c){
     h+='<div class="pv-rot">Links úteis</div>';
     h+=lks.map(l=>`<a class="pl-item" href="${esc(l.url)}" target="_blank"><span class="pl-ico">${ICO.link}</span><span class="pl-nome">${esc(l.nome||l.url)}</span><span class="pl-abrir">Abrir</span></a>`).join('');
   }
-  if(!h)h='<div class="pub-vazio"><div class="pub-vazio-ico">◇</div><div class="pub-vazio-txt">Nada anexado ainda</div><div class="pub-vazio-sub">Os arquivos aparecem conforme as etapas são concluídas.</div></div>';
-  el('pProjetos').innerHTML=h;
+  el('pProjetos').innerHTML=h;   /* vazio = não ocupa espaço */
+  const rot=el('pRotCrono');
+  if(rot) rot.style.marginTop=(temArq||temEnt)?'34px':'4px';
 }
 
 function renderPubEtapas(c){
