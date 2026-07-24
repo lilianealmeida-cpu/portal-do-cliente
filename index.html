@@ -1109,6 +1109,17 @@ textarea.ent-edit:focus{border-color:var(--brick);background:#fff}
   color:var(--brick-deep);background:var(--brick-pale);border:1px solid #E8BCA8;
   border-radius:100px;padding:2px 9px;margin-left:8px;vertical-align:1px;
 }
+
+/* ═══ AGENDAMENTO DENTRO DO ITEM ═══ */
+.ent-ag{
+  background:#FDF9F5;border:1px solid #E8D5C6;border-radius:10px;
+  padding:13px 15px;margin-top:11px;
+}
+.ent-ag-rot{
+  font-size:11.5px;letter-spacing:.7px;text-transform:uppercase;
+  color:var(--brick-deep);font-weight:600;margin-bottom:5px;
+}
+.ent-ag-txt{font-size:14px;color:#4A4038;line-height:1.6}
 </style>
 </head>
 <body>
@@ -1435,6 +1446,13 @@ function renderClienteAdmin(){
             ${c.endereco?`<span class="cli-dado">📍 ${esc(c.endereco)}</span>`:''}
             ${c.aniversario?`<span class="cli-dado">🎂 ${esc(c.aniversario)}</span>`:''}
           </div>
+        </div>
+      </div>
+      <div class="ad-box" style="margin-bottom:14px">
+        <div class="ad-rot">Card do topo — 3º bloco (deixe vazio para "Próxima etapa" automática)</div>
+        <div class="ad-row">
+          <div><input class="ad-in" placeholder="Rótulo — ex: Ação necessária" value="${esc(c.acaoRot||'')}" onchange="setCliCampo('acaoRot',this.value)"></div>
+          <div><input class="ad-in" placeholder="Texto — ex: Reconhecimento da entrega final" value="${esc(c.acaoTxt||'')}" onchange="setCliCampo('acaoTxt',this.value)"></div>
         </div>
       </div>
       <div class="link-row">
@@ -1901,7 +1919,9 @@ function renderEntItem(it,lista,isAdmin){
     <div class="ent-custom-aviso">Status personalizados — um por linha (vazio usa a lista padrão)</div>
     <textarea class="ent-edit" placeholder="Ex: Via impressa entregue e assinada&#10;Liberado para orçamentos e execução" onchange="setStatusCustom('${lista}','${it.id}',this.value)">${esc((it.statusCustom||[]).join('\n'))}</textarea>
     <div class="ent-custom-aviso">Nota que o cliente lê abaixo dos status</div>
-    <textarea class="ent-edit" placeholder="Ex: Nesta reunião será feita a conferência da versão impressa..." onchange="updateEntItem('${lista}','${it.id}','nota',this.value)">${esc(it.nota||'')}</textarea>`;}
+    <textarea class="ent-edit" placeholder="Ex: Nesta reunião será feita a conferência da versão impressa..." onchange="updateEntItem('${lista}','${it.id}','nota',this.value)">${esc(it.nota||'')}</textarea>
+    <div class="ent-custom-aviso">Agendamento da reunião (vazio = não aparece)</div>
+    <textarea class="ent-edit" placeholder="Ex: Aguardando confirmação do cliente para definição do horário." onchange="updateEntItem('${lista}','${it.id}','agenda',this.value)">${esc(it.agenda||'')}</textarea>`;}
   else{html+=`<div class="ent-nome-el">${esc(it.nome)}</div>`;if(it.obs)html+=`<div class="ent-item-obs">${esc(it.obs)}</div>`;}
   html+=`</div>`;
   if(isAdmin)html+=`<div class="ent-actions"><button class="bicon" onclick="toggleEntEdit('${lista}','${it.id}')">${it.edit?'✓':'✎'}</button><button class="bicon" onclick="deleteEntItem('${lista}','${it.id}')" style="color:var(--brick)">✕</button></div>`;
@@ -1917,6 +1937,7 @@ function renderEntItem(it,lista,isAdmin){
     }).join('')}</div>`;
   }
   if(it.nota&&!(isAdmin&&it.edit))html+=`<div class="ent-nota">${esc(it.nota)}</div>`;
+  if(it.agenda&&!(isAdmin&&it.edit))html+=`<div class="ent-ag"><div class="ent-ag-rot">Agendamento da reunião</div><div class="ent-ag-txt">${esc(it.agenda)}</div></div>`;
   if(isLast)html+=`<div class="ent-final">Etapa concluída.</div>`;
   html+=`</div>`;
   return html;
@@ -2003,12 +2024,12 @@ function renderPubResumo(c){
       </div>
     </div>
     <div class="res-card">
-    <div class="res-ico">${ico.seta}</div>
-    <div>
-        <div class="res-rot">Próxima etapa</div>
-        <div class="res-val">${prox?esc(prox.nome):'-'}</div>
-    </div>
-</div>
+      <div class="res-ico">${ICO.seta}</div>
+      <div>
+        <div class="res-rot">${c.acaoRot||'Próxima etapa'}</div>
+        <div class="res-val">${c.acaoTxt?esc(c.acaoTxt):(prox?esc(prox.nome):'—')}</div>
+      </div>
+    </div>`;
 
   el('pPainel').innerHTML=`
     ${ets.length?`<div class="prog-wrap">
@@ -2240,6 +2261,13 @@ function pedirReuniao(){
 
 
 /* ═══════ ADMIN — etapas: prazo, entrega, alteração ═══════ */
+async function setCliCampo(campo,valor){
+  const c=cli(); if(!c)return;
+  const v=String(valor||'').trim();
+  if(v) c[campo]=v; else delete c[campo];
+  await save(); toast('Salvo ✓');
+}
+
 async function setEtapaCampo(eid,campo,valor){
   const c=cli(); if(!c)return;
   const e=(c.etapas||[]).find(x=>x.id===eid); if(!e)return;
