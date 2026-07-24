@@ -2003,12 +2003,12 @@ function renderPubResumo(c){
       </div>
     </div>
     <div class="res-card">
-      <div class="res-ico">${ICO.seta}</div>
-      <div>
+    <div class="res-ico">${ico.seta}</div>
+    <div>
         <div class="res-rot">Próxima etapa</div>
-        <div class="res-val">${prox?esc(prox.nome):'—'}</div>
-      </div>
-    </div>`;
+        <div class="res-val">${prox?esc(prox.nome):'-'}</div>
+    </div>
+</div>
 
   el('pPainel').innerHTML=`
     ${ets.length?`<div class="prog-wrap">
